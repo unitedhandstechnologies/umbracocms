@@ -1,0 +1,575 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.About>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <!-- bootstrap css file -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <!-- all.min.css file -->
+    <link rel="stylesheet" href="assets/css/all.min.css" />
+    <!-- font-awesome css file -->
+
+    <!-- style.css file -->
+    <link rel="stylesheet" href="assets/css/mystyle.css" />
+    <link rel="stylesheet" href="assets/css/media_query.css" />
+    <link rel="stylesheet" href="assets/css/menu.css" />
+    <link rel="stylesheet" href="assets/css/fancybox.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="assets/css/slick.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="assets/css/animations.css" type="text/css" />
+
+    <title>South Africa</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="main-header">
+                        <div class="menu_wrp">
+                            <input type="checkbox" class="menu-btn" id="menu-btn" />
+                            <label for="menu-btn" class="menu-icon">
+                                <span class="menu-icon__line"></span>
+                            </label>
+
+                            <ul class="nav-links">
+                                <li class="nav-link">
+                                    <a href="revealed.html"> South Africa: Revealed </a>
+                                </li>
+                                <li class="nav-link">
+                                    <a href="#"> Getting Around </a>
+                                </li>
+                                <li class="nav-link">
+                                    <a href="travel-trade-partners.html"> Travel Trade Partners </a>
+                                </li>
+                                <li class="nav-link">
+                                    <a href="#"> Blog </a>
+                                </li>
+                                <li class="nav-link">
+                                    <a href="newsroom.html"> Newsroom </a>
+                                </li>
+                                <li class="nav-link">
+                                    <a href="contact-us.html"> Contact Us </a>
+                                </li>
+                            </ul>
+
+                            <div class="search_icon">
+                                <a data-fancybox data-src="#trueModal" href="javascript:;"> <i class="fa fa-search"
+                                        aria-hidden="true"></i> </a>
+                            </div>
+
+                            <div class="search_popup" style="display: none;" id="trueModal">
+                                <form class="search-container">
+                                    <input type="text" id="search-bar" placeholder="Search..." />
+                                    <a href="#">
+                                        <div class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></div>
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="assets/images/Logo.png" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="banner_style contact_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="banner_container">
+                        <div class="container">
+                            <div class="contact_banner_wrp animatedParent">
+                                <div class="contact_banner animated fadeInLeftShort"><img
+                                        src="assets/images/contact_banner.jpg" /></div>
+                                <div class="contact_right_form">
+                                    <h4><span> We’d love to </span> hear <b>from you! </b></h4>
+
+                                    <div class="row input-container line_input">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="styled-input">
+                                                <input type="text" required />
+                                                <label> Full Name<span>*</span> </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="styled-input" style="float: right;">
+                                                <input type="text" required />
+                                                <label> Last Name<span>*</span> </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="styled-input">
+                                                <input type="text" required />
+                                                <label> Phone Number<span>*</span> </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="styled-input">
+                                                <input type="text" required />
+                                                <label> Email<span>*</span> </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <div class="styled-input wide">
+                                                <textarea required></textarea>
+                                                <label>Your Question <span>*</span> </label>
+                                                <div class="send_icon_style"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12"></div>
+                                        <button type="submit" class="submit_btn" value="Submit Your Request">Submit Your
+                                            Request</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <!--  -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--  -->
+
+    <section class="contact_map animatedParent">
+        <div class="container animated fadeInUpShort">
+            <div class="row">
+                <div class="col-12">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d889.8093982779013!2d72.86878319980514!3d19.068983671049693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c96947c59ebf%3A0xe0dcf4376ddae213!2sSouth%20Africa%20Tourism%20Board!5e0!3m2!1sen!2sin!4v1665139251762!5m2!1sen!2sin"
+                        width="100%" height="" style="border: 0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--  -->
+
+    <section>
+        <div class="container Emergency_bar_wrp">
+            <div class="row">
+                <div class="col-12 NoPadMar">
+                    <div class="card_wrp caption">
+                        <div class="text">
+                            Emergency Contacts – <br />
+                            South Africa
+                        </div>
+                    </div>
+
+                    <!--  -->
+
+                    <div class="card_wrp">
+                        <div class="icon"><img src="assets/images/contact_icon_01.png" /></div>
+                        <div class="text">Nationwide Emergency Response <b> 10111 </b></div>
+                    </div>
+
+                    <!--  -->
+
+                    <div class="card_wrp">
+                        <div class="icon"><img src="assets/images/contact_icon_02.png" /></div>
+                        <div class="text">Cell phone emergency <b> 112 </b></div>
+                    </div>
+
+                    <!--  -->
+
+                    <div class="card_wrp">
+                        <div class="icon"><img src="assets/images/contact_icon_03.png" /></div>
+                        <div class="text">Ambulance <b> 10177 </b></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="animatedParent">
+        <div class="container faq_wrp animated fadeInUpShort">
+            <div class="sec_heading">
+                <h1>Frequently Asked Questions</h1>
+            </div>
+
+            <div class="accordion" id="accordionExample">
+                <!-- Tab 1 starts -->
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                            aria-controls="panelsStayOpen-collapseOne">
+                            Visas & Entry
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                        aria-labelledby="panelsStayOpen-headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="subhead_A1">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse_A1" aria-expanded="false" aria-controls="collapse_A1">
+                                        What are the entry requirements for Indian travelers?
+                                    </button>
+                                </h2>
+                                <div id="collapse_A1" class="accordion-collapse collapse" aria-labelledby="subhead_A1">
+                                    <div class="accordion-body">
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                        Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                                        unknown printer took a galley of
+                                        type and scrambled it to make a type specimen book. It has survived not only
+                                        five centuries, but also the leap into electronic typesetting, remaining
+                                        essentially unchanged.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  -->
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="subhead_A2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse_A2" aria-expanded="false" aria-controls="collapse_A2">
+                                        What are the types of visas I can apply for?
+                                    </button>
+                                </h2>
+                                <div id="collapse_A2" class="accordion-collapse collapse" aria-labelledby="subhead_A2">
+                                    <div class="accordion-body">
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  -->
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="subhead_A3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse_A3" aria-expanded="false" aria-controls="collapse_A3">
+                                        How do I apply for a tourist visa?
+                                    </button>
+                                </h2>
+                                <div id="collapse_A3" class="accordion-collapse collapse" aria-labelledby="subhead_A3">
+                                    <div class="accordion-body">
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  -->
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="subhead_A4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse_A4" aria-expanded="false" aria-controls="collapse_A4">
+                                        Do I have to be a vaccinated traveler to visit South Africa?
+                                    </button>
+                                </h2>
+                                <div id="collapse_A4" class="accordion-collapse collapse" aria-labelledby="subhead_A4">
+                                    <div class="accordion-body">
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  -->
+
+                            <div class="accordion-item" style="border-bottom: 0px;">
+                                <h2 class="accordion-header" id="subhead_A5">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse_A5" aria-expanded="false" aria-controls="collapse_A5">
+                                        Do I need travel insurance when travelling to South Africa?
+                                    </button>
+                                </h2>
+                                <div id="collapse_A5" class="accordion-collapse collapse" aria-labelledby="subhead_A5">
+                                    <div class="accordion-body">
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2 starts -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
+                            aria-controls="panelsStayOpen-collapseTwo">
+                            Money
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <!--  -->
+
+                            <div class="accordion-item border-bottom-0">
+                                <h2 class="accordion-header" id="subhead_B1">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse_B1" aria-expanded="false" aria-controls="collapse_B1">
+                                        Lorem Ipsum
+                                    </button>
+                                </h2>
+                                <div id="collapse_B1" class="accordion-collapse collapse" aria-labelledby="subhead_B1">
+                                    <div class="accordion-body">
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3 starts -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true"
+                            aria-controls="panelsStayOpen-collapseThree">
+                            SIM Card
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <!--  -->
+
+                            <div class="accordion-item border-bottom-0">
+                                <h2 class="accordion-header" id="subhead_C1">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse_C1" aria-expanded="false" aria-controls="collapse_C1">
+                                        Lorem Ipsum
+                                    </button>
+                                </h2>
+                                <div id="collapse_C1" class="accordion-collapse collapse" aria-labelledby="subhead_C1">
+                                    <div class="accordion-body">
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4 starts -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingFoure">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseFoure" aria-expanded="true"
+                            aria-controls="panelsStayOpen-collapseFoure">
+                            Accommodation
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFoure" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingFoure" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <!--  -->
+
+                            <div class="accordion-item border-bottom-0">
+                                <h2 class="accordion-header" id="subhead_D1">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse_D1" aria-expanded="false" aria-controls="collapse_D1">
+                                        Lorem Ipsum
+                                    </button>
+                                </h2>
+                                <div id="collapse_D1" class="accordion-collapse collapse" aria-labelledby="subhead_D1">
+                                    <div class="accordion-body">
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4 starts -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="true"
+                            aria-controls="panelsStayOpen-collapseFive">
+                            Public Transport
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingFive" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <!--  -->
+
+                            <div class="accordion-item border-bottom-0">
+                                <h2 class="accordion-header" id="subhead_E1">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse_E1" aria-expanded="false" aria-controls="collapse_E1">
+                                        Lorem Ipsum
+                                    </button>
+                                </h2>
+                                <div id="collapse_E1" class="accordion-collapse collapse" aria-labelledby="subhead_E1">
+                                    <div class="accordion-body">
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--  -->
+
+    <section class="offers_promotions NoPaMa">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text">SIGN UP FOR SPECIAL OFFERS & PROMOTIONS</div>
+                    <div class="sign_up">
+                        <a href="#">
+                            <i class="fa fa-long-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <marquee id="MarqueeFooterId" class="footertext" onload="this.start();" onmouseover="this.stop();"
+            onmouseout="this.start();" truespeed="" scrollamount="1" scrolldelay="20" direction="left" loop="repeat">
+            <span> Lorem ipsum dolor sit amet, consectetur</span>
+            <span> Lorem ipsum dolor sit amet, consectetur </span>
+            <span> Lorem ipsum dolor sit amet, consectetur</span>
+            <span> Lorem ipsum dolor sit amet, consectetur</span>
+            <span> Lorem ipsum dolor sit amet, consectetur</span>
+        </marquee>
+        <div class="clearfix"></div>
+    </section>
+    <!-- Footer Start -->
+    <footer class="footer-wrapper" id="footer">
+        <div class="footer-content overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-title">Popular destinations</div>
+                        <a href="#" class="footer-item"> Kruger National Park </a>
+                        <a href="#" class="footer-item"> Apartheid Museum </a>
+                        <a href="#" class="footer-item"> West Coast National Park </a>
+                        <a href="#" class="footer-item"> Coffee Bay </a>
+                        <a href="#" class="footer-item"> Augrabies Falls </a>
+                        <a href="#" class="footer-item"> Madikwe Game Reserve </a>
+                        <a href="#" class="footer-item"> Oribi Gorge </a>
+                        <a href="#" class="footer-item"> Bourke’s Luck Potholes </a>
+                        <a href="#" class="footer-item"> Golden Gate Highlands National Park </a>
+                        <a href="#" class="footer-item"> God’s Window </a>
+                    </div>
+                    <!--  -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-title">Things to do</div>
+                        <a href="#" class="footer-item"> Active Adventure </a>
+                        <a href="#" class="footer-item"> Wildlife Safari </a>
+                        <a href="#" class="footer-item"> Coastal Beach </a>
+                        <a href="#" class="footer-item"> Cultural Roots </a>
+                        <a href="#" class="footer-item"> Scenic Outdoors </a>
+                        <a href="#" class="footer-item"> City Lifestyle </a>
+                    </div>
+                    <!--  -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-title">Plan your trip</div>
+                        <a href="#" class="footer-item"> Itineraries </a>
+                        <a href="#" class="footer-item"> Visa & Immigration</a>
+                        <a href="#" class="footer-item"> COVID-19 Travel Updates </a>
+                        <a href="#" class="footer-item"> When to Visit</a>
+                        <a href="#" class="footer-item"> Getting Here: Flights to South Africa </a>
+                        <a href="#" class="footer-item"> Getting Around</a>
+                    </div>
+                    <!--  -->
+
+                    <div class="col-lg-3 col-md-6 mt-md-5">
+                        <a href="#" class="footer-item"> South Africa: Revealed </a>
+                        <a href="#" class="footer-item"> More & More </a>
+                        <a href="#" class="footer-item"> Travel Trade </a>
+                        <a href="#" class="footer-item"> Partners </a>
+                        <a href="#" class="footer-item"> Facts </a>
+                        <a href="#" class="footer-item"> Blog </a>
+                        <a href="#" class="footer-item"> Newsroom </a>
+                        <a href="#" class="footer-item"> Contact Us </a>
+                    </div>
+                    <!--  -->
+                    <div class="copy-right">
+                        <div class="footer_logo">
+                            <img src="assets/images/Logo.png" />
+                        </div>
+                        <div class="social-links">
+                            <div class="socila-icons">
+                                <a href="#">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </div>
+                            <div class="socila-icons">
+                                <a href="#">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </div>
+                            <div class="socila-icons">
+                                <a href="#">
+                                    <i class="fa fa-youtube"></i>
+                                </a>
+                            </div>
+                            <div class="socila-icons">
+                                <a href="#">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                        © 2022. South African Tourism. All Rights Reserved. <a href="#"> Disclaimer </a> &nbsp; <a
+                            href="#"> Privacy Policy </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+    <!-- Page Scroll bar -->
+    <div class="scrollbar">
+        <div class="scrollball">
+            <span></span>
+        </div>
+    </div>
+    <!-- Page Scroll bar -->
+    <!-- jquery file -->
+
+    <script src="assets/js/jquery.js"></script>
+
+    <!-- bootstrap js file -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/menu.js"></script>
+    <script src="assets/js/fancybox.js"></script>
+    <script src="assets/js/slick.min.js"></script>
+    <script src="assets/js/css3-animate-it.js"></script>
+
+    <script src="assets/js/scripts.js"></script>
+</body>
+
+</html>
