@@ -1,0 +1,23 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IEnumerable<Link>>
+
+@{
+    string firstUrl = "", firstTitle = "";
+    System.Collections.Generic.List<Link> links = Model.ToList();
+    if(links.Count>0){
+        var firstLink = links[0];
+        firstUrl = firstLink?.OLink?.FirstOrDefault()?.Url ?? "#";
+        firstTitle = firstLink?.OTitle ?? "";
+    }
+}
+
+<div class="content-aside">
+    <a class="content-aside__main-link @(ViewData["url"].ToString().Equals(firstUrl)? "content-aside__main-link--active":"")" href="@firstUrl">@firstTitle</a>
+    <ul class="content-aside__menu">
+		@foreach(var link in Model.Skip(1)){
+		var url = link?.OLink?.FirstOrDefault()?.Url ?? "#";
+		    <li class="content-aside__menu-item">
+		        <a class="content-aside__menu-link @(ViewData["url"].ToString().Equals(url)? "content-aside__menu-link--active":"")" href="@url">@(link?.OTitle ?? "Error")</a>
+		    </li>
+		}
+    </ul>
+</div>

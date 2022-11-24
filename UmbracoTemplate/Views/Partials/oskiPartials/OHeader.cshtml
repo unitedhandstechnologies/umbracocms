@@ -1,0 +1,51 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OHome>
+@{
+    var logoHeader = Model.OHeaderLogo != null ? Model.OHeaderLogo.Url() : string.Empty;
+    var contactUrl = string.Empty;
+    if (Model.OContactPageLink != null)
+    {
+        contactUrl = Model.OContactPageLink.Url;
+    }
+}
+@Model.Parent
+<header class="header">
+    <div class="container">
+        <div class="header__inner">
+            @if (UmbracoContext.PublishedRequest.PublishedContent.Name.Equals("Home"))
+            {
+                <img src="@logoHeader" class="header__logo" alt="Logotype in header">
+            }
+            else
+            {
+                <a class="header__logo" href="/">
+                    <img src="@logoHeader" alt="Logotype in header">
+                </a>
+            }
+            <div class="header__navigation">
+                <nav>
+                    <ul class="header__menu">
+                        @foreach (var item in Model.OHeaderMenuItems)
+                        {
+                            var linkUrl = item?.OLink.FirstOrDefault()?.Url ?? "#";
+                            <li><a href="@linkUrl" class="header__menu-link @(ViewData["url"].ToString().Contains(linkUrl)? "header__menu-link--active":"")">@item.OCaption</a></li>
+                        }
+                    </ul>
+                </nav>
+                <div class="header__socials">
+                    @foreach (SocialLink link in Model.OHeaderMenuSocialLinks)
+                    {
+                        var linkUrl = link?.OUrl.FirstOrDefault()?.Url ?? "#";
+                        <a href="@linkUrl" target="@(link?.OUrl.First().Target)" class="header__social">
+                            @Html.Raw(System.IO.File.ReadAllText("wwwroot" + link.OIcon.Url()))
+                        </a>
+                    }
+                </div>
+                @if (Model.OContactPageLink != null)
+                {
+                    <a href="@Model.OContactPageLink.Url" class="header__button" data-link="@Model.OContactPageLink.Url">@Model.OContactPageLink.Name</a>
+                }
+            </div>
+        </div>
+        <button class="header__burger" type="button">Menu</button>
+    </div>
+</header>

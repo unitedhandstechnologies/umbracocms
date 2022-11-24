@@ -1,0 +1,25 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OPage404>
+@{
+    Layout = "Main.cshtml";
+    var backgroundImage = Model.OBackgroundImage == null ? "../Content/images/error-page-bg.jpg" : Model.OBackgroundImage.Url();
+}
+
+<section class="error-page">
+    <div class="error-page__bg">
+        <img src="@backgroundImage" alt="Page-404 background">
+    </div>
+    <div class="container">
+        <div class="error-page__inner">
+            <div class="error-page__content">
+                <h1 class="error-page__title">@Model.OErrorCode</h1>
+                <p class="error-page__subtitle">@Model.OErrorName</p>
+                <p class="error-page__text">@Model.OErrorDescription</p>
+                @if (Model.OLink != null)
+                {
+                    <a class="error-page__link" href="@Model.OLink.Url"><span>@Model.OLink.Name</span></a>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>

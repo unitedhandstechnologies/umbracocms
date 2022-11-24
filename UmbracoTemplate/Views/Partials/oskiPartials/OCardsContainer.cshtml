@@ -1,0 +1,59 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OCardsContainer>
+
+@if(ViewData["name"] != null && ViewData["name"].ToString().Equals("OSKI digital agency")) {
+	<section class="doing oski-pb-4 oski-pt-4">
+				<div class="container">
+					<div class="doing__inner">
+						<h3 class="doing__title section-title">@Model.OTitle</h3>
+						<div class="doing__block">
+						    @foreach(var item in Model.OItems){
+						    var image = item.OItemIcon != null ?item.OItemIcon.Url() : String.Empty;
+						    var url = item.OLink != null && item.OLink.Count()>0 ? item.OLink.First().Url :  String.Empty;
+						    var orderImage = string.IsNullOrEmpty(item.OImagePosition) || item.OImagePosition == "Image top" ? "" : item.OImagePosition == "right" ? "order: 2;" : "order: 1;";
+						    var margginImage = orderImage == "" ? "" : "margin: auto;";
+							<div class="doing__column">
+								<div class="doing__item @(item.OBackgroundColor == "dark"? "cards__item--dark":"")" style="flex-direction: @(orderImage == "" ? "column" : "row")">
+									<div class="doing__item-icon">
+										<img src="@image" alt="Icon-1 for section 'What we doing'">
+									</div>
+									<div style="order: @(orderImage.Contains("2") ? "1" : "2")">
+    									<p class="doing__item-title">@item.OTitle</p>
+    									<p class="doing__item-text">@item.OText</p>
+    									<a class="doing__item-link" href="@url"><span>Find out more</span> &rarr;</a>								    
+									</div>
+								</div>
+							</div>
+							}
+						</div>
+					</div>
+				</div>
+			</section>
+} else {
+    string style = "about-page__cards";
+    @* if((bool) ViewData["isParentPage"]){
+        style = "about-page__cards";
+    } *@
+    <div class="container">
+        <div class="@style cards">
+            @foreach (var item in Model.OItems)
+            {
+                var image = item.OItemIcon != null ? item.OItemIcon.Url() : String.Empty;
+                var url = item.OLink != null && item.OLink.Count() > 0 ? item.OLink.First().Url : String.Empty;
+                var orderImage = string.IsNullOrEmpty(item.OImagePosition) || item.OImagePosition == "Image top" ? "" : item.OImagePosition == "Right" ? "order: 2;" : "order: 1;";
+                var margginImage = orderImage == "" ? "" : "margin: auto 20px;";
+                <div class="cards__column">
+                    <div class="cards__item @(item.OBackgroundColor == "dark"? "cards__item--dark":"")" style="flex-direction: @(orderImage == "" ? "column" : "row");">
+                        <div class="cards__item-icon" style="@orderImage; @margginImage">
+                            <img src="@image" alt="Icon-1">
+                        </div>
+                        <div style="order: @(orderImage.Contains("2") ? "1" : "2")">
+                            <p class="cards__item-title">@item.OTitle</p>
+                            <p class="cards__item-text">@item.OText</p>
+                            <a class="cards__item-link" href="@url"><span>Find out more</span> &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

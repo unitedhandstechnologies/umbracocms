@@ -1,0 +1,67 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OSearchContainer>
+@using Oski.Core.Models.Views;
+
+@{
+    var url = Context.Request.Path.ToString();
+}
+
+<section class="search oski-mb-4 oski-mt-4" id="search">
+    <div class="container">
+        <form action="/Umbraco/Api/Search/GetResultSearch/" id="form-search" class="search__form">
+            <label for="input-search" class="search__error-message">Enter at least 3 characters</label>
+            <input class="search__form-input" type="text" name="query" placeholder="@(Model.OPlaceholderSearch ?? "")" required id="input-search" min="3">
+
+            @if (!Model.ODropdown.Any())
+            {
+                <input type="text" name="typeSearch" value="@Model.OValueDefault" style="display: none" />
+            }
+            else
+            {
+                <div class="search__form-select">
+                    <input type="text" name="typeSearch" class="search__form-select__input" value="@Model.OValueDefault" />
+                    <button class="search__form-select__button" type="button">@Model.OCaptionDefault</button>
+                    <ul class="search__form-select__list hide" style="z-index: 10">
+                        <li class="search__form-select__item">
+                            <button type="button" data-value="@Model.OValueDefault">@Model.OCaptionDefault</button>
+                        </li>
+
+                        @foreach (var item in Model.ODropdown)
+                        {
+                            <li class="search__form-select__item">
+                                <button type="button" data-value="@item.OValue">@item.OCaption</button>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+
+            <button class="search__form-button" type="submit" id="submit-search"><span>Search</span></button>
+
+        </form>
+    </div>
+
+    <div id="print-result-search">
+        <h4 class="search__result__title"></h4>
+
+        <div class="container search__border">
+            <div class="search__result"></div>
+        </div>
+
+        <div class="pagination d-none" data-take-elem="@Model.ONumberOfSearchResults">
+            <ul class="pagination__block">
+                <li class="pagination__item">&#129152</li>
+                <li class="pagination__item"></li>
+                <li class="pagination__item">...</li>
+                <li class="pagination__item"></li>
+                <li class="pagination__item"></li>
+                <li class="pagination__item active"></li>
+                <li class="pagination__item"></li>
+                <li class="pagination__item"></li>
+                <li class="pagination__item">...</li>
+                <li class="pagination__item"></li>
+                <li class="pagination__item">&#129154</li>
+            </ul>
+        </div>
+    </div>
+
+</section>

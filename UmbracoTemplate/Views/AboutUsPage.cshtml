@@ -1,0 +1,20 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OAboutUsPage>
+@{
+	Layout = "Main.cshtml";
+}
+<main class="inner-page">
+@Html.Partial("oskiPartials/OFullScreenTopContainer", Model);
+<section class="content">
+	<div class="container">
+		<div class="content__inner">
+            @Html.Partial("oskiPartials/OSidebar", Model, new ViewDataDictionary(ViewData) { { "url", Model.Url() } })
+            <div class="content-info about-page">
+                @foreach(var item in Model.OContent){
+                    var type = item.GetType().Name;
+                    @Html.Partial($"oskiPartials/{type}", item, new ViewDataDictionary(ViewData) { { "name", Model.Name } })
+                }
+            </div>
+        </div>
+	</div>
+</section>
+</main>

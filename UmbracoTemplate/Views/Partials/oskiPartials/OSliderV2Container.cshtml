@@ -1,0 +1,63 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OSliderV2Container>
+@{}
+
+<section class="team oski-mb-3 oski-mt-3 oski-pb-2 oski-pt-2" id="team">
+    <div class="container">
+        <h3 class="team__title section-title">@Model.OTitle</h3>
+        <p class="team__text">@Model.OSubtitle</p>
+        <div class="glider-contain">
+            <div class="team__slider glider">
+                @foreach (var slide in Model.OItems)
+                {
+                    var imageType = "" == "rectangle" ? "team__slide-image-rectangle" : "team__slide-image-circle";
+    <div class="team__slide">
+        <div class="team__slide-content">
+            <!-- Фотография вставлена фоном, чтобы при любом размере растягивалась\ужималась под нужные размеры -->
+            <div class="@imageType">
+                <div style="background-image: url('@(slide.OImage?.Url() ?? "#")');"></div>
+            </div>
+            <span class="team__slide-name">@slide.OTitle</span>
+            <p class="team__slide-experience">@slide.OSubTitle</p>
+            <div class="team__slide-info">
+                @foreach (var text in slide.OStrings)
+                {
+<p class="team__slide-text">@text</p>}
+            </div>
+            <div class="team__slide-contacts">
+                <!-- вывод списка ссылок на другие сайты указанные пользователем -->
+                @foreach (var website in slide.OItems.OfType<WebsiteLink>())
+                {
+<p>
+    <a href="@website.OUrl" class="team__slide-email font-link-default" target="_blank">@website.OTitle</a>
+</p>}
+                <!-- вывод списка ссылок на страницы сайта указанные пользователем -->
+                @foreach (var link in slide.OItems.OfType<Link>())
+                {
+<p style="word-break: break-all">
+    <a href="@(link.OLink.First()?.Url)" class="team__slide-email font-link-default" target="_blank">@link.OTitle</a>
+</p>}
+                <!-- вывод списка почт указанных пользователем -->
+                @foreach (Email email in slide.OItems.OfType<Email>())
+                {
+<p>
+    <a href="mailto:@email.OMail" class="team__slide-email font-link-default">@email.OTitle</a>
+</p>}
+                <!-- вывод списка ссылок на социальные сети -->
+                <div class="team__slide-socials">
+                    @foreach (SocialLink link in slide.OItems.OfType<SocialLink>())
+                    {
+                        var linkUrl = link?.OUrl.FirstOrDefault()?.Url ?? "#";
+                    <a href="@linkUrl" target="@(link?.OUrl.First().Target)" class="team__slide-social">
+                        @Html.Raw(System.IO.File.ReadAllText("wwwroot" + link.OIcon.Url()))
+                    </a>}
+                </div>
+            </div>
+        </div>
+    </div>}
+            </div>
+            <button type="button" class="team__arrow team__arrow--prev"><img src="../Content/images/slider-arrow-prev.svg" alt="Prev arrow"></button>
+            <button type="button" class="team__arrow team__arrow--next"><img src="../Content/images/slider-arrow-next.svg" alt="Next arrow"></button>
+            <div role="tablist" class="dots"></div>
+        </div>
+    </div>
+</section>

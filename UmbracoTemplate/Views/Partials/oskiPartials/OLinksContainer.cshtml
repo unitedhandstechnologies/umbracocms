@@ -1,0 +1,30 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OLinksContainer>
+
+@{
+	var image = Model.OImage != null ? Model.OImage.Url() : String.Empty;
+	var color = @image == String.Empty ? "black" : Model.OFontColor != null ? $"#{Model.OFontColor}" : String.Empty;
+	var serviceStyle = !string.IsNullOrEmpty(Model.OTitle) ?
+	            $"background-image: url('{image}');" : 
+	            $"background: url('{image}') 100% 520px content-box; background-size: cover;";
+}
+<style>
+    .services__item-title::before{
+        background: @color;
+    }
+</style>
+<section class="services oski-pb-4 oski-pt-4 oski-mt-3 oski-mb-3" style="@serviceStyle">
+	<div class="container">
+		<div class="services__inner">
+			<h3 class="services__title section-title" style="color: @color;">@Model.OTitle</h3>
+			<p class="services__text" style="color: @color;">@Model.OSubTitle</p>
+			<div class="services__block">
+			    @foreach(var link in Model.OItems){
+					<div class="services__item">
+						<a class="services__item-title" style="color: @color;" href="@(link?.OLink.First()?.Url ?? "#")" target="_blank">@link.OTitle</a>
+					</div>
+				}
+		    </div>
+		</div>
+	</div>
+</section>
+

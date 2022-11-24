@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .contact {{
+            padding: 110px 0 140px;
+            background: #ECEFFF;
+            text-align: center;
+            display: block;
+        }}
+
+        .container {{
+            max-width: 1280px;
+            min-width: 320px;
+            padding: 0 39px;
+            margin: 0 auto;
+        }}
+
+        .contact__title {{
+            margin-bottom: 17px;
+        }}
+
+        .section-title {{
+            font-weight: 900;
+            font-size: 60px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }}
+
+        .contact__text {{
+            font-size: 22px;
+            line-height: 31px;
+            margin-bottom: 48px;
+        }}
+
+        .contact__form-input {{
+            display: block;
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto 20px;
+            border: 1px solid #9FB0FE;
+            border-radius: 4px;
+            padding: 13px 20px 15px 31px;
+            background: #ffffff;
+            font-size: 18px;
+            line-height: 22px;
+            color: #3F3F3F;
+        }}
+
+        .contact__form-message {{
+            display: block;
+            width: 100%;
+            max-width: 480px;
+            height: 200px;
+            margin: 0 auto 20px;
+            resize: none;
+            border: 1px solid #9FB0FE;
+            border-radius: 4px;
+            padding: 13px 20px 15px 31px;
+            background: #ffffff;
+            font-size: 18px;
+            line-height: 22px;
+            color: #3F3F3F;
+        }}
+
+        body {{
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 28px;
+            color: #000000;
+            background: #ffffff;
+            margin:0;
+        }}
+
+        html, body {{
+            width: 100%;
+            height: 100%;
+            font-size: 100%;
+            line-height: 1;
+            -ms-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+        }}
+    </style>
+</head>
+<body>
+    <section class="contact" id="contact">
+        <div class="container">
+            <h3 class="contact__title section-title">OSKI.Solutions</h3>
+            <p class="contact__text">Contact form has been submited with data below:</p>
+            <form class="contact__form">
+                <input class="contact__form-input" type="text" name="name" placeholder="Name" required value="{0}">
+                <input class="contact__form-input" type="email" name="email" placeholder="E-mail" required value="{1}">
+                <textarea name="message" class="contact__form-message" placeholder="Message to OSKI.solutions">{2}</textarea>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

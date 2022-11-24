@@ -1,0 +1,73 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = null;
+	Response.ContentType = "text/xml";
+	IPublishedContent siteHomePage = Model.Root();
+	string excludedDocumentTypeList = Model.Value<string>("excludedDocumentTypes");
+    string[] excludedDocumentTypes = (!String.IsNullOrEmpty(excludedDocumentTypeList)) ? excludedDocumentTypeList.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(p => p.Trim()).ToArray() : new string[] { };
+    int maxSiteMapDepth = Model.HasValue("maxSiteMapDepth") ? Model.Value<int>("maxSiteMapDepth") : int.MaxValue; 
+}
+@*
+Add sitemap to robots.txt
+
+Finally let search engines know the url for your sitemap by updating your robots.txt file accordingly:
+
+    Sitemap: https://www.oski.site/xml-site-map
+    User-agent: *
+
+Once you introduce a Sitemap for the first time, you might suddenly find yourself being crawled by multiple
+different search engine bots. This is exactly what you want! However if your site or hosting is a little
+creaky, you might want to add a crawl rate to the robots.txt to instruct well behaved search engine bots to
+give a bit of space to your site between requests:
+
+    Sitemap: https://www.oski.site/xml-site-map
+    User-agent: *
+    Crawl-delay: 10
+
+*@
+
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xsi:schemalocation="http://www.google.com/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" 
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    @RenderSiteMapUrlEntry(siteHomePage)
+    @RenderSiteMapUrlEntriesForChildren(siteHomePage, maxSiteMapDepth, excludedDocumentTypes)
+</urlset>
+        
+        
+
+@helper RenderSiteMapUrlEntry(IPublishedContent node)
+{
+    var changeFreq = node.Value("searchEngineChangeFrequency", fallback: Fallback.To(Fallback.Ancestors, Fallback.DefaultValue), defaultValue:"monthly");
+    var priority = node.HasValue("searchEngineRelativePriority") ? node.Value<string>("searchEngineRelativePriority") : "0.5";
+    
+    <url>
+        <loc>@EnsureUrlStartsWithDomain(@node.Url(mode: UrlMode.Absolute))</loc>
+        <lastmod>@(string.Format("{0:s}+00:00", node.UpdateDate))</lastmod>
+        <changefreq>@changeFreq</changefreq>
+        <priority>@priority</priority>
+    </url>
+}
+@helper RenderSiteMapUrlEntriesForChildren(IPublishedContent parentPage, int maxSiteMapDepth, string[] excludedDocumentTypes){
+    foreach (var page in parentPage.Children.Where(f => !excludedDocumentTypes.Contains(f.ContentType.Alias) && !f.Value<bool>("hideFromXmlSiteMap")))
+    {
+        @RenderSiteMapUrlEntry(page)
+        if (page.Level < maxSiteMapDepth && page.Children.Any(f => !excludedDocumentTypes.Contains(f.ContentType.Alias) && !f.Value<bool>("hideFromXmlSiteMap")))
+        {
+            @RenderSiteMapUrlEntriesForChildren(page, maxSiteMapDepth, excludedDocumentTypes)
+        }
+    }
+}
+@functions {
+    private static string EnsureUrlStartsWithDomain(string url)
+    {
+        if (url.StartsWith("http")){
+            return url;
+        }
+        else {
+            // whatever makes sense for your site here...
+            var domainPrefix = string.Format("https://{0}/", HttpContext.Current.Request.ServerVariables["HTTP_HOST"]);
+            return domainPrefix + url;
+        }
+    }
+}

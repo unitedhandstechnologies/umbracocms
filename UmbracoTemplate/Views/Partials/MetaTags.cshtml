@@ -1,0 +1,25 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    var composition = Model as IOMetaData;
+}
+@if (composition != null)
+{
+    var robots = composition.ORobotsIndex ? "index" : "noindex";
+    robots += ", ";
+    robots += composition.ORobotsFollow ? "follow" : "nofollow";
+    <meta property="og:title" content="@(string.IsNullOrWhiteSpace(composition.OMetaName)?Model.Name:composition.OMetaName)">
+    <meta property="og:site_name" content="oski.site">
+    <meta property="og:url" content="@composition.Url()">
+    <meta property="og:description" content="@composition.OMetaDescription">
+    <meta property="og:image" content="~/Content/images/logo.svg">
+
+
+    <meta name="description" content="@composition.OMetaDescription">
+    <meta name="robots" content="@robots">
+    <title>@(string.IsNullOrWhiteSpace(composition.OMetaName)?Model.Name:composition.OMetaName)</title>
+}
+else
+{
+    <title>@Model.Name</title>
+    <meta property="og:title" content="@Model.Name">
+}

@@ -1,0 +1,16 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OSimplePage>
+@{
+    Layout = "Main.cshtml";
+    var pageName = Model.Name == "Portfolio" ? "Content_page_container" : String.Empty; 
+}
+
+
+@* the fun starts here *@
+<main class="inner-page Content_page_container">
+    
+        @foreach (var content in Model.OPageContent)
+        {
+            @Html.Partial($"oskiPartials/{content.GetType().Name}", content, new ViewDataDictionary(ViewData) { { "name", Model.Name } });
+        }
+     
+</main>

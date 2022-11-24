@@ -1,0 +1,111 @@
+﻿@inherits UmbracoViewPage<dynamic>
+@using Umbraco.Cms.Core.Templates
+@using Newtonsoft.Json.Linq
+@using System.Web
+@if (Model != null && Model.sections != null)
+{
+    var oneColumn = ((System.Collections.ICollection)Model.sections).Count == 1;
+    <div class="umb-grid">
+        @foreach (var section in Model.sections)
+        {
+
+            if (section.rows.Count > 0)
+            {
+                foreach (var row in section.rows)
+                {
+                    renderRow(row, true);
+                }
+            }
+        }
+    </div>
+}
+
+@{
+    void renderRow(dynamic row, bool singleColumn)
+    {
+        <div class="@(checkBlock(row, OFullScreenTopContainer.ModelTypeAlias) ? "" : "container")">
+            <div class="row @(checkBlock(row, OContactMapContainer.ModelTypeAlias) ? "grid-row-center" : "")">
+                @foreach (var area in row.areas)
+                {
+                    <div class="col-md-@area.grid">
+                        <div @RenderElementAttributes(area)>
+                            @foreach (var control in area.controls)
+                            {
+                                if (control != null && control.editor != null && control.editor.view != null)
+                                {
+                                    var element = Html.Partial("grid/editors/base", (object)control);
+                                    if (element != null)
+                                    {
+                                        if (element.ToHtmlString().Contains("img") && !element.ToHtmlString().Contains("video_fullscreen"))
+                                        {
+                                            var response = element.ToHtmlString().Replace("<img ", "<img class=\"img-fluid\" ");
+                                            @Html.Raw(response);
+                                        }
+                                        else
+                                        {
+                                            <text>@element</text>
+                                        }
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+}
+
+@functions {
+    public static HtmlString RenderElementAttributes(dynamic contentItem)
+    {
+        var attrs = new List<string>();
+        JObject cfg = contentItem.config;
+
+        if (cfg != null)
+            foreach (JProperty property in cfg.Properties())
+            {
+                var propertyValue = HttpUtility.HtmlAttributeEncode(property.Value.ToString());
+                attrs.Add(property.Name + "=\"" + propertyValue + "\"");
+            }
+
+        JObject style = contentItem.styles;
+
+        if (style != null)
+        {
+            var cssVals = new List<string>();
+            foreach (JProperty property in style.Properties())
+            {
+                var propertyValue = property.Value.ToString();
+                if (string.IsNullOrWhiteSpace(propertyValue) == false)
+                {
+                    cssVals.Add(property.Name + ":" + propertyValue + ";");
+                }
+            }
+
+            if (cssVals.Any())
+                attrs.Add("style=\"" + HttpUtility.HtmlAttributeEncode(string.Join(" ", cssVals)) + "\"");
+        }
+
+        return new HtmlString(string.Join(" ", attrs));
+    }
+}
+
+@functions {
+    public static bool checkBlock(dynamic row, string alias)
+    {
+        foreach (var area in row.areas)
+        {
+
+            if (area.controls.Count == 1)
+            {
+                var control = area.controls[0];
+
+                string contentTypeAlias = Convert.ToString(control.value.dtgeContentTypeAlias);
+
+                if (contentTypeAlias == alias) return true;
+            }
+        }
+        return false;
+    }
+}

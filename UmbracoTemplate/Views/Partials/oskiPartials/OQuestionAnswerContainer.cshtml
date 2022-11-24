@@ -1,0 +1,19 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OQuestionAnswerContainer>
+
+<section class="works oski-pb-4 oski-pt-4">
+    <h3 class="works__title">@Model.OTitle</h3>
+    <div class="works__accordion">
+        @foreach (var item in Model.Items)
+        {
+        <div class="accordion__item">
+            <h4 class="accordion__question">
+                @item.OQuestion
+            </h4>
+            <p class="accordion__answer">
+               @item.OAnswer 
+            </p>
+        </div>
+        }
+    </div>
+</section>
+

@@ -1,0 +1,15 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OInformationPage>
+@using Newtonsoft.Json;
+@{
+    Layout = "Main.cshtml";
+
+  
+    
+}
+
+<main class="inner-page">
+    @if(Model.OMainContent != null)
+    {
+        @Html.GetGridHtml(Model, "oMainContent", "Clean")
+    }
+</main>

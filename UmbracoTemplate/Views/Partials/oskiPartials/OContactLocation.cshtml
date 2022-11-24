@@ -1,0 +1,32 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OContactLocation>
+@inject Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment
+<div class="contacts-page oski-mb-4 oski-mt-4" >
+	<div class="container">
+		<div class="contacts-page__inner">
+			<!-- Блок с контактами -->
+			<div class="contacts-page__information">
+			    @foreach(var item in Model.OContacts.OItems){
+				    <p class="contacts-page__address">@item</p>
+				}
+				@foreach(var link in Model.OContacts.OLinks){
+					var url = link?.OLink?.FirstOrDefault()?.Url ?? "#";
+					<a href="@url" class="contacts-page__link">@link.OTitle</a>
+				}
+				<div class="header__socials">
+				    @foreach(SocialLink link in Model.OSocialLinks){
+					var linkUrl = link?.OUrl.First()?.Url ?? "#";
+					<a href="@linkUrl" target="@(link?.OUrl.First().Target)" class="header__social">
+						@Html.Raw(System.IO.File.ReadAllText(hostingEnvironment.ContentRootPath + "\\" + link.OIcon?.Url()))
+					</a>
+				    }
+		    	</div>
+		    </div>
+	    	<!-- Блок с картой -->
+	    	<div class="contacts-page__map">
+		        @Html.Raw(Model.OGoogleMapLocation)
+		    </div>
+    	</div>
+    </div>
+</div>
+
+

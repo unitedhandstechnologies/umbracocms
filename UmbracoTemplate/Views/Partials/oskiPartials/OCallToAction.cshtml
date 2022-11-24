@@ -1,0 +1,20 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OCallToAction>
+@{
+    string style = "";
+    if(ViewData["isParentPage"] != null && (bool) ViewData["isParentPage"]){
+        style = "about-page__action";
+    }
+}
+
+<section class="call_to_action oski-mb-3 oski-mt-3">
+    <div class="container" style="@(Model.OIsFullWidth ? "": "display: flex;justify-content: center;")">
+        <div class="@style action__element @(Model.OIsFullWidth ? "primary":"secondary") @Model.OBackgroundStyle">
+            <h3 class="action__title">@Model.OTitle</h3>
+            <p class="action__text">@Model.OSubTitle</p>
+            @if (Model.OAction != null && !string.IsNullOrEmpty(Model.OAction.Url))
+            {
+                <a href="@Model.OAction.Url" class="action__button" type="button"><span>@Model.OButtonText</span></a>
+            }
+        </div>
+    </div>
+</section>

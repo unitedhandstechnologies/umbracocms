@@ -1,0 +1,21 @@
+﻿{
+  "javascript": [
+    "~/App_Plugins/Feedback/customwelcomedashboard.controller.js"
+
+  ],
+  "css": [
+    "~/App_Plugins/Feedback/css/fb.css"
+  ],
+  "dashboards": [
+    {
+      "alias": "welcomeDashboard",
+      "view": "/App_Plugins/Feedback/html/WelcomeDashboard.html",
+      "sections": [ "content" ],
+      "weight": -10,
+      "access": [
+        { "deny": "translator" },
+        { "grant": "admin" }
+      ]
+    }
+  ]
+}

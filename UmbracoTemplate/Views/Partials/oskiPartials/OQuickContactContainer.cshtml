@@ -1,0 +1,42 @@
+﻿@using Microsoft.Extensions.Configuration;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OQuickContactContainer>
+@inject IConfiguration configuration
+<section class="call_to_action oski-mb-3 oski-mt-3">
+    <div class="container" style="@(Model.OIsFullWidth ? "": "display: flex;justify-content: center;")">
+        <div class="action__element @(Model.OIsFullWidth ? "primary":"secondary") @Model.OBackgroundStyle">
+            <h3 class="action__title">@Model.OTitle</h3>
+            <p class="action__text">@Model.OSubTitle</p>
+            <form action="/Umbraco/Surface/Contact/SendMessage" id="contactForm" class="contact__form">
+                @Html.AntiForgeryToken()
+
+                <div class="contact__success-answer ">
+                    @Umbraco.GetDictionaryValue("ContactForm.SuccessMessage", "Message was sent sucessfully.")
+                </div>
+                <div class="contact__error-answer">
+                    @Umbraco.GetDictionaryValue("ContactForm.UnsuccessMessage", "Message not sent.")
+                </div>
+                <input class="contact__form-input" type="text" name="name" placeholder="Name" required>
+                <input class="contact__form-input" style="display:none;" type="text" name="name" placeholder="Name" value="Quick Contact Form" required>
+                <input class="contact__form-input" style="display: none" type="text" name="subject" value="@Model.OSubject" required>
+                <input class="contact__form-input" style="display: none" type="email" name="toEmail" value="@Model.OEmail" required>
+
+
+                <input class="contact__form-input" type="email" name="email" placeholder="E-mail" required>
+                <textarea name="message" class="contact__form-message" placeholder="@Model.OPlaceholderForMessage" required></textarea>
+                @if (Model.ORecaptcha)
+                {
+                    <div class="contact__recaptcha">
+                        @Umbraco.GetDictionaryValue("ContactForm.ErrorRecaptcha", "Please check the box below to proceed.")
+                    </div>
+                    <div class="g-recaptcha" data-sitekey="@configuration["Google.Recaptcha.SiteKey"]"></div>
+                }
+                <button class="contact__form-button" type="submit" id="submit-contact">@Model.OButtonName</button>
+
+            </form>
+        </div>
+    </div>
+</section>
+@if (Model.ORecaptcha)
+{
+    <script src="https://www.google.com/recaptcha/api.js" defer></script>
+}

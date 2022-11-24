@@ -1,0 +1,33 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OHome>
+@{ Layout = "Main.cshtml"; }
+
+@if (Model.OContent is OBlog)
+{
+    @Html.Partial("Blog", Model.OContent);
+}
+@if (Model.OContent is OGenericAboutPage)
+{
+    @Html.Partial("LeftMenuPage", Model.OContent);
+}
+
+@if (Model.OContent is OSimplePage || Model.OContent is OInformationPage)
+{
+    <main>
+        @if (Model.OContent is OSimplePage)
+        {
+            var page = Model.OContent as OSimplePage;
+            foreach (var content in page.OPageContent)
+            {
+                @Html.Partial($"oskiPartials/{content.GetType().Name}", content, new ViewDataDictionary(ViewData) { { "name", page.Name } });
+            }
+        }
+        @if (Model.OContent is OInformationPage)
+        {
+            var page = Model.OContent as OInformationPage;
+            if (page.OMainContent != null)
+            {
+                @Html.GetGridHtml(page, "oMainContent", "Clean")
+            }
+        }
+    </main>
+}

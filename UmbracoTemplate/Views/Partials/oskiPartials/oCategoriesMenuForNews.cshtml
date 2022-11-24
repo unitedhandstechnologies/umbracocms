@@ -1,0 +1,64 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OBlog>
+@{
+    string queryCategory = Context.Request.Query["category"].ToString() ?? "";
+    string queryTag = Context.Request.Query["tag"].ToString() ?? "";
+    List<string> arrayQueryTag = !string.IsNullOrWhiteSpace(queryTag) ? queryTag.Split(new char[] { ',' }).ToList() : new List<string>();
+
+    var sortCategory = !string.IsNullOrWhiteSpace(queryCategory) ? $"&category={queryCategory}" : "";
+    var sortTag = !string.IsNullOrWhiteSpace(queryTag) ? $"&tag={queryTag}" : "";
+
+    var sortlink = $"{sortCategory}{sortTag}";
+
+    var model = Model.Descendants<OBlogpost>();
+
+    if (!string.IsNullOrWhiteSpace(queryCategory))
+    {
+        model = model.Where(x => x.OCategories.ToLower() == queryCategory);
+    }
+
+    var listTag = model.SelectMany(x => x.OTags).Distinct().ToList();
+
+}
+
+<div class="content-aside">
+    <p class="content-aside__main-link">@Model.OMenuTitle.ToUpper()</p>
+    <ul class="content-aside__menu">
+        @foreach (var categories in Model.Ocategories)
+        {
+            var link = queryCategory != categories.OCaption.Trim().ToLower() ? $"?category={categories.OCaption.ToLower()}" : "";
+
+            <li class="content-aside__menu-item">
+                <a class="content-aside__menu-link @(queryCategory == categories.OCaption.Trim().ToLower() ? "content-aside__main-link--active" : "")"
+                   href="@(Model.Url() + $"{link}")">
+                    @(categories.OCaption)
+                </a>
+            </li>
+        }
+    </ul>
+    @if (!string.IsNullOrWhiteSpace(Model.OMenuSubtitle) && listTag.Any())
+    {
+        <p class="content-aside__main-link">@Model.OMenuSubtitle.ToUpper()</p>
+        <div class="content-aside__menu-tags">
+            @foreach (string item in listTag)
+            {
+                var activeLinkTag = arrayQueryTag.Contains(item);
+
+                List<string> tempArrayQueryTag = new List<string>(arrayQueryTag);
+
+                if (activeLinkTag)
+                {
+                    tempArrayQueryTag.Remove(item);
+                }
+                else
+                {
+                    tempArrayQueryTag.Add(item);
+                }
+
+                var link = tempArrayQueryTag.Any() ? $"tag={string.Join(",", tempArrayQueryTag)}" : "";
+
+                <a class="blogpost-tag @(activeLinkTag ? "blogpost-tag__active" : "") " href="@(Model.Url() + $"?{link}{sortCategory}")">@item</a>
+            }
+        </div>
+    }
+
+</div>

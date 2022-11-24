@@ -1,0 +1,36 @@
+﻿@inherits Umbraco.Cms.Web.Common.Macros.PartialViewMacroPage;
+@{
+    var startNodeId = Model.MacroParameters["oParentPage"] ?? Model.Content.Id;
+    var currentUrl = Model.MacroParameters["oCurrentUrl"] ?? Model.Content.Url();
+    bool displayDates = false;
+    if (Model.MacroParameters["oDisplayCreationDate"] != null)
+    {
+        displayDates = Model.MacroParameters["oDisplayCreationDate"].ToString() == "True";
+    }
+}
+@if (startNodeId != null)
+{
+    var startNode = Umbraco.Content(startNodeId);
+    if (startNode == null)
+    {
+        return;
+    }
+    var blogposts = startNode.Children.OrderByDescending(x => x.CreateDate).ToList();
+    <div class="content-aside">
+        <a class="content-aside__main-link @(currentUrl.ToString().Equals(startNode.Url())? "content-aside__main-link--active":"")" href="@startNode.Url()">@startNode.Name</a>
+        <ul class="content-aside__menu">
+            @foreach (var blogpost in blogposts)
+            {
+                <li class="content-aside__menu-item">
+                    <a class="content-aside__menu-link @(currentUrl.ToString().Equals(blogpost.Url())? "content-aside__menu-link--active":"")" href="@blogpost.Url()">
+                        @(blogpost.Name)
+                        @if (displayDates)
+                        {
+                            <span class="content-aside__menu-link__date">@blogpost.CreateDate.ToString("MMMM d, yyyy")</span>
+                        }
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+}

@@ -1,0 +1,19 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OCardList>
+
+@foreach(var item in Model.OItems){
+    var image = item.OItemIcon != null ?item.OItemIcon.Url() : String.Empty;
+    var link = item?.OLink?.FirstOrDefault();
+    var style = item.OImagePosition.Equals("Left")? "image-block--row": item.OImagePosition.Equals("Right")? "image-block--row-reverse": "";
+    <div class="about-page__images @(item.OBackgroundColor == "dark" ? "markdown__back" : "")">
+        <div class="image-block @style">
+			<div class="image-block__image" style="background-image: url('@image');"></div>
+			<div class="image-block__info">
+	    		<p class="image-block__title">@item.OTitle</p>
+		    	<p class="image-block__text">@Html.Raw(item.OText)</p>
+		    	@if(!string.IsNullOrEmpty(link?.Url) && !string.IsNullOrEmpty(link?.Name)) {
+                    <a class="image-block__button" href="@link.Url" style="text-align:center" ><span>@link.Name</span></a>
+		    	}
+			</div>
+		</div>
+	</div>
+}

@@ -1,0 +1,11 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<OCodeFragment>
+
+<div class="container">
+<p class="code__text">@Model.OFirstParagraph</p>
+<div class="code__block">
+    <pre>
+            @Html.Raw(Model.OCode)            
+        </pre>
+</div>
+<p class="code__text">@Model.OSecondParagraph</p>
+</div>
