@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Home</summary>
 	[PublishedModel("home")]
-	public partial class Home : PublishedContentModel
+	public partial class Home : PublishedContentModel, ISlide
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -120,5 +120,29 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("titleImage")]
 		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops TitleImage => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "titleImage");
+
+		///<summary>
+		/// Slide Description
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("slideDescription")]
+		public virtual string SlideDescription => global::Umbraco.Cms.Web.Common.PublishedModels.Slide.GetSlideDescription(this, _publishedValueFallback);
+
+		///<summary>
+		/// Slide Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("slideImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops SlideImage => global::Umbraco.Cms.Web.Common.PublishedModels.Slide.GetSlideImage(this, _publishedValueFallback);
+
+		///<summary>
+		/// SlideTitle
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("slideTitle")]
+		public virtual string SlideTitle => global::Umbraco.Cms.Web.Common.PublishedModels.Slide.GetSlideTitle(this, _publishedValueFallback);
 	}
 }

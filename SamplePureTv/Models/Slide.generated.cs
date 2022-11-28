@@ -18,9 +18,29 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
+	// Mixin Content Type with alias "slide"
+	/// <summary>Slide</summary>
+	public partial interface ISlide : IPublishedContent
+	{
+		/// <summary>Slide Description</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		string SlideDescription { get; }
+
+		/// <summary>Slide Image</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		global::Umbraco.Cms.Core.Models.MediaWithCrops SlideImage { get; }
+
+		/// <summary>SlideTitle</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		string SlideTitle { get; }
+	}
+
 	/// <summary>Slide</summary>
 	[PublishedModel("slide")]
-	public partial class Slide : PublishedContentModel
+	public partial class Slide : PublishedContentModel, ISlide
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -55,7 +75,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("slideDescription")]
-		public virtual string SlideDescription => this.Value<string>(_publishedValueFallback, "slideDescription");
+		public virtual string SlideDescription => GetSlideDescription(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Slide Description</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static string GetSlideDescription(ISlide that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "slideDescription");
 
 		///<summary>
 		/// Slide Image
@@ -63,7 +88,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("slideImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops SlideImage => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "slideImage");
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops SlideImage => GetSlideImage(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Slide Image</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static global::Umbraco.Cms.Core.Models.MediaWithCrops GetSlideImage(ISlide that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(publishedValueFallback, "slideImage");
 
 		///<summary>
 		/// SlideTitle
@@ -71,6 +101,11 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("slideTitle")]
-		public virtual string SlideTitle => this.Value<string>(_publishedValueFallback, "slideTitle");
+		public virtual string SlideTitle => GetSlideTitle(this, _publishedValueFallback);
+
+		/// <summary>Static getter for SlideTitle</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static string GetSlideTitle(ISlide that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "slideTitle");
 	}
 }

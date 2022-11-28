@@ -7,9 +7,9 @@
     x.IsDocumentType("slideList")).FirstOrDefault();
     var virticalslides = (ContentModels.VerticalSlideList)Model.Root().Children().Where(x =>
     x.IsDocumentType("verticalSlideList")).FirstOrDefault();
-        var bucketList = (ContentModels.BucketListHotspots)Model.Root().Children().Where(x =>
+    var bucketList = (ContentModels.BucketListHotspots)Model.Root().Children().Where(x =>
     x.IsDocumentType("bucketListHotspots")).FirstOrDefault();
-            var running = (ContentModels.RunningSlideList)Model.Root().Children().Where(x =>
+    var running = (ContentModels.RunningSlideList)Model.Root().Children().Where(x =>
     x.IsDocumentType("runningSlideList")).FirstOrDefault();
 }
 <!DOCTYPE html>
@@ -18,27 +18,27 @@
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="~/assets/images/favicon.ico" />
 
     <meta name="viewport"
         content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
     <!-- bootstrap css file -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
     <!-- all.min.css file -->
-    <link rel="stylesheet" href="assets/css/all.min.css" />
+    <link rel="stylesheet" href="~/assets/css/all.min.css" />
     <!-- font-awesome css file -->
 
     <!-- style.css file -->
-    <link rel="stylesheet" href="assets/css/mystyle.css" />
-    <link rel="stylesheet" href="assets/css/media_query.css" />
-    <link rel="stylesheet" href="assets/css/menu.css" />
-    <link rel="stylesheet" href="assets/css/fancybox.css" />
+    <link rel="stylesheet" href="~/assets/css/mystyle.css" />
+    <link rel="stylesheet" href="~/assets/css/media_query.css" />
+    <link rel="stylesheet" href="~/assets/css/menu.css" />
+    <link rel="stylesheet" href="~/assets/css/fancybox.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link href="assets/css/slick.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="assets/css/animations.css" type="text/css" />
+    <link href="~/assets/css/slick.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/assets/css/animations.css" type="text/css" />
 
-    <link rel="stylesheet" href="assets/css/vertical-slide.css" type="text/css" />
+    <link rel="stylesheet" href="~/assets/css/vertical-slide.css" type="text/css" />
 
     <title>South Africa</title>
 </head>
@@ -72,7 +72,7 @@
                                     <a href="newsroom.html"> Newsroom </a>
                                 </li>
                                 <li class="nav-link">
-                                    <a href="contact-us.html"> Contact Us </a>
+                                    <a href="/about"> Contact Us </a>
                                 </li>
                             </ul>
 
@@ -103,7 +103,7 @@
         </div>
     </header>
 
-    <section class="banner_style home_banner" style="margin-bottom: 0px;">
+    <section class="banner_style" style="background-image: url(@Model?.TitleImage.Url()">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -207,51 +207,52 @@
                             </div>
                         </div>
                     </div>
-                    @{
-                    foreach (ContentModels.Slide item in bucketList.Children())
-                    {
                     <div class="Bucket_list animated fadeInRightShort">
-                        <div class="slide">
-                            <div class="thumbnail_style">
-                                <div class="static_text">
-                                    <h2>@item.SlideTitle</h2>
-                                    <h1>Kruger National Park</h1>
-                                </div>
-                                <div class="static_text_bottom">@item.SlideDescription</div>
-                                <img src=@item.SlideImage/>
-                                <div class="content_thumb">
-                                    <div class="hover_content">
-                                        <div class="sec_wrp">
-                                            <div class="title">Best time to visit</div>
-                                            <div class="month">May – September</div>
-                                            <p>The Bush thins out in the dry winter months, making it easier to spot
-                                                wildlife.</p>
-                                        <!--  -->
-                                        <div class="sec_wrp">
-                                            <div class="title">Known for</div>
-                                            <p>Being the first and largest national park in South Africa. Also, home to
-                                                the Big 5</p>
-                                        </div>
-                                        <!--  -->
-                                        <div class="sec_wrp" style="border: 0px;">
-                                            <div class="title">Budget</div>
-                                            <p>
-                                                <i class="fa fa-inr" aria-hidden="true"></i>
-                                                <i class="fa fa-inr" aria-hidden="true"></i>
-                                                <i class="fa fa-inr" aria-hidden="true"></i>
-                                                <i class="fa fa-inr" aria-hidden="true"></i>
-                                            </p>
+                        @{
+                            foreach (ContentModels.Slide item in bucketList.Children())
+                            {
+                                <div class="thumbnail_style">
+                                    <div class="static_text">
+                                        <h1>@item.SlideTitle</h1>
+                                        <h2>Kruger National Park</h2>
+                                    </div>
+                                    <div class="static_text_bottom"><h4>@item.SlideDescription</h4></div>
+                                    <img src=@item.SlideImage.Url() />
+                                    <div class="content_thumb">
+                                        <div class="hover_content">
+                                            <div class="sec_wrp">
+                                                <div class="title">Best time to visit</div>
+                                                <div class="month">May – September</div>
+                                                <p>The Bush thins out in the dry winter months, making it easier to spot
+                                                    wildlife.</p>
+                                                <!--  -->
+                                            <div class="sec_wrp">
+                                                    <div class="title">Known for</div>
+                                                    <p>Being the first and largest national park in South Africa. Also, home
+                                                        to
+                                                        the Big 5</p>
+                                                </div>
+                                                <!--  -->
+                                            <div class="sec_wrp" style="border: 0px;">
+                                                    <div class="title">Budget</div>
+                                                    <p>
+                                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                                        </div>
-                                        </div>
-                                }
-                                }
-</section>
+                            }
+                        }
+                    </div>
+
+                </div>
+    </section>
     <section class="touchdown_style mb-0">
         <div class="container">
             <div class="row">
@@ -267,10 +268,9 @@
                         <div class="col-md-12">
                             <div class="image_effect">
                                 <figure class="effect-ruby">
-                                    <img src="assets/images/touchdown_img_01.jpg" />
+                                    <img src="@Model?.SlideImage.Url()" />
                                     <figcaption>
-                                        <h2>VISA & IMMIGRATION <span> Hassle-free processes for the perfect vacation.
-                                            </span></h2>
+                                        <h2>@Model?.SlideTitle</h2><span> @Model?.SlideDescription</span></h2>
 
                                         <div class="hidden">
                                             <div class="button">
@@ -622,16 +622,16 @@
                 </div>
             </div>
         </div>
-       <div class="clearfix"></div>
+        <div class="clearfix"></div>
 
         <marquee id="MarqueeFooterId" class="footertext" onload="this.start();" onmouseover="this.stop();"
             onmouseout="this.start();" truespeed="" scrollamount="1" scrolldelay="20" direction="left" loop="repeat">
-                    @{
-        foreach (ContentModels.RunningSlide item in running.Children())
-        {
-            <span> @item.MessageBox</span>
-        }
-        }
+            @{
+                foreach (ContentModels.RunningSlide item in running.Children())
+                {
+                    <span> @item.MessageBox</span>
+                }
+            }
         </marquee>
 
     </section>
