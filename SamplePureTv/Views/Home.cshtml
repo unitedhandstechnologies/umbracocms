@@ -102,7 +102,6 @@
             </div>
         </div>
     </header>
-
     <section class="banner_style" style="background-image: url(@Model?.TitleImage.Url()">
         <div class="container">
             <div class="row">
@@ -111,7 +110,9 @@
                         <div class="container">
                             <h1><span>@Model?.Title</span> @Model?.SubTitle</h1>
                             <div class="highlight">Home to 3000 adventures & more!</div>
-                            <br>@Model?.Description
+                            <br>
+                            <span style="color:#fff">@Model?.Description</span>
+                            <br>
                             <a data-fancybox data-small-btn="true" class="btnFillup liquidbg"
                                 href="https://www.youtube.com/watch?v=rahRaVtEQaM">
                                 Watch Video
@@ -216,7 +217,9 @@
                                         <h1>@item.SlideTitle</h1>
                                         <h2>Kruger National Park</h2>
                                     </div>
-                                    <div class="static_text_bottom"><h4>@item.SlideDescription</h4></div>
+                                    <div class="static_text_bottom">
+                                        @item.SlideDescription
+                                    </div>
                                     <img src=@item.SlideImage.Url() />
                                     <div class="content_thumb">
                                         <div class="hover_content">
@@ -270,7 +273,7 @@
                                 <figure class="effect-ruby">
                                     <img src="@Model?.SlideImage.Url()" />
                                     <figcaption>
-                                        <h2>@Model?.SlideTitle</h2><span> @Model?.SlideDescription</span></h2>
+                                        <h2>@Model?.SlideTitle<span> @Model?.SlideDescription</span></h2>
 
                                         <div class="hidden">
                                             <div class="button">
@@ -636,6 +639,62 @@
 
     </section>
     <!-- Footer Start -->
+    <!-- Footer End -->
+    <!-- Page Scroll bar -->
+    <div class="scrollbar">
+        <div class="scrollball">
+            <span></span>
+        </div>
+    </div>
+    <!-- Page Scroll bar -->
+    <!-- jquery file -->
+
+    <script src="assets/js/jquery.js"></script>
+
+    <!-- bootstrap js file -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/menu.js"></script>
+    <script src="assets/js/fancybox.js"></script>
+    <script src="assets/js/slick.min.js"></script>
+    <script src="assets/js/css3-animate-it.js"></script>
+
+    <script src="assets/js/vertical-slide.js"></script>
+
+    <script src="assets/js/scripts.js"></script>
+
+    <!-- MAP POPUP START -->
+    <div style="display: none;" id="Bungee_Jumping" class="map_popup_style">
+        <div class="video_wrp">
+            <video width="100%" height="100%" controls id="myVideo">
+                <source src="https://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.mp4" type="video/mp4" />
+                <source src="https://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.webm" type="video/webm" />
+                <source src="https://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.ogv" type="video/ogg" />
+            </video>
+        </div>
+        <div class="content_wrp">
+            <div class="icon_wrp">
+                <img src="assets/images/activity_icon_bungee_jumping.png" />
+            </div>
+            <h2>Eastern Cape</h2>
+            <h1>Bungee Jumping</h1>
+            <p>A guaranteed rush of adrenaline as you dive head-first into this adventure!</p>
+        </div>
+    </div>
+    <div class="itinerary_style">
+        <div class="itinerary">
+            <div class="imageBox imageBefore">
+                <a href="#">
+                    <img src="assets/images/itinerary_img.png" title="Itinerary" />
+                </a>
+            </div>
+            <div class="imageBox imageAfter">
+                <a href="#">
+                    <img src="assets/images/itinerary_img_hover.png" title="Itinerary" />
+                    <span>Itineraries </span>
+                </a>
+            </div>
+        </div>
+    </div>
     <footer class="footer-wrapper" id="footer">
         <div class="footer-content overlay">
             <div class="container">
@@ -719,62 +778,6 @@
             </div>
         </div>
     </footer>
-    <!-- Footer End -->
-    <!-- Page Scroll bar -->
-    <div class="scrollbar">
-        <div class="scrollball">
-            <span></span>
-        </div>
-    </div>
-    <!-- Page Scroll bar -->
-    <!-- jquery file -->
-
-    <script src="assets/js/jquery.js"></script>
-
-    <!-- bootstrap js file -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/menu.js"></script>
-    <script src="assets/js/fancybox.js"></script>
-    <script src="assets/js/slick.min.js"></script>
-    <script src="assets/js/css3-animate-it.js"></script>
-
-    <script src="assets/js/vertical-slide.js"></script>
-
-    <script src="assets/js/scripts.js"></script>
-
-    <!-- MAP POPUP START -->
-    <div style="display: none;" id="Bungee_Jumping" class="map_popup_style">
-        <div class="video_wrp">
-            <video width="100%" height="100%" controls id="myVideo">
-                <source src="https://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.mp4" type="video/mp4" />
-                <source src="https://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.webm" type="video/webm" />
-                <source src="https://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.ogv" type="video/ogg" />
-            </video>
-        </div>
-        <div class="content_wrp">
-            <div class="icon_wrp">
-                <img src="assets/images/activity_icon_bungee_jumping.png" />
-            </div>
-            <h2>Eastern Cape</h2>
-            <h1>Bungee Jumping</h1>
-            <p>A guaranteed rush of adrenaline as you dive head-first into this adventure!</p>
-        </div>
-    </div>
-    <div class="itinerary_style">
-        <div class="itinerary">
-            <div class="imageBox imageBefore">
-                <a href="#">
-                    <img src="assets/images/itinerary_img.png" title="Itinerary" />
-                </a>
-            </div>
-            <div class="imageBox imageAfter">
-                <a href="#">
-                    <img src="assets/images/itinerary_img_hover.png" title="Itinerary" />
-                    <span>Itineraries </span>
-                </a>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>
