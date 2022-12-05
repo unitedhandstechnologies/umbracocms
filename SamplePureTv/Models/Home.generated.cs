@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Home</summary>
 	[PublishedModel("home")]
-	public partial class Home : PublishedContentModel, ILayout, ISlide
+	public partial class Home : PublishedContentModel, ISlide
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant

@@ -18,7 +18,7 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Virtical Slide</summary>
+	/// <summary>Vertical Slide</summary>
 	[PublishedModel("virticalSlide")]
 	public partial class VirticalSlide : PublishedContentModel
 	{
