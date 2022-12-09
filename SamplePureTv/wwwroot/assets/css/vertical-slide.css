@@ -1,0 +1,229 @@
+/* html,
+body {
+  height: 100vh;
+  overflow-x: hidden;
+} */
+
+/* body {
+  background: red;
+  margin: 0;
+} */
+
+
+
+
+.parent {
+  border: 1px solid red;
+  background-color: #f00;
+  height: 100vh;
+}
+
+ 
+
+
+
+
+
+
+.intro {
+  height: 100vh;
+  width: 100%;
+  background: #999;
+}
+
+.Slide_wrp {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 100vh;
+  color: #333;
+  overflow: hidden;
+}
+
+
+.Slide_wrp .slick-slide  { margin: 0px;  }
+
+
+
+/* .slick-track,
+.slick-list {
+  height: 100vh;
+} */
+
+.slick-dotted.slick-slider {
+  margin: 0;
+}
+
+.slides {
+  width: 100%;
+  height: 100vh;
+}
+.slides .slide {
+  background: white;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 40px;
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  background-position: center center !important;
+ 
+}
+ 
+
+.western_cape { background-image: url(../images/slide_western_cape.jpg) !important; }
+.eastern_cape { background-image: url(../images/slide_eastern_cape.jpg) !important; }
+.free_state { background-image: url(../images/slide_free_state.jpg) !important; }
+.Gauteng { background-image: url(../images/slide_gauteng.jpg) !important; }
+.Mpumalanga { background-image: url(../images/slide_mpumalanga.jpg) !important; }
+.KwaZulu_Natal { background-image: url(../images/slide_KwaZulu_Natal.jpg) !important; }
+.North_West { background-image: url(../images/slide_north_west.jpg) !important; }
+.Northern_Cape  { background-image: url(../images/slide_northern_cape.jpg) !important; }
+.Limpopo  { background-image: url(../images/slide_limpopo.jpg) !important; }
+
+
+
+
+.slick-dots {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  text-align: left;
+}
+
+
+.slick-dots li {
+  display: block;
+}
+
+
+
+/* .slick-dots li button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  outline: none;
+  background: transparent;
+} */
+
+.slick-dots button {
+  background-color: rgb(230, 230, 230);
+  font-size: 0;
+  display: block;
+  width: 10px;
+  height: 10px;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 90px;
+  border: 0px;
+}
+
+
+.slick-dots li.slick-active button { background-color: #FFCE00; }
+
+
+
+
+
+.Slide_wrp .caption_style { color: #fff; margin-left: 130px;  }
+
+
+
+.Slide_wrp .caption_style h1 {
+  font-size: 60px;
+  font-family: "amsipro-bolduploaded_file";
+  text-transform: uppercase;
+}
+
+
+.Slide_wrp .caption_style h2 { width: 500px;
+  font-size: 22px;
+}
+
+
+
+.slide_btn a {
+  color: #fff;
+  padding: 8px 17px;
+  border: 1px solid #fff;
+  border-radius: 90px;
+  text-decoration: none;
+  font-size: 16px;
+ 
+  display: inline-table;
+  transition: all 0.2s ease;
+}
+
+.slide_btn i {
+  float: right;
+  vertical-align: middle;
+  line-height: inherit;
+  padding-left: 20px;
+}
+
+
+   
+
+.slide_btn a:hover {
+  background-color: #000;
+  transition: all 0.3s ease;
+  color: #fff;
+  border: 1px solid #000;
+}
+
+ 
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+@media (max-width: 600px) {
+
+.Slide_wrp .caption_style {
+    margin-left: 10px;
+}
+
+.Slide_wrp .caption_style h1 {
+  font-size: 40px;
+}
+.Slide_wrp .caption_style h2 {
+  font-size: 18px; width: 100%;
+}
+
+
+
+.Slide_wrp .slick-dots { top: 90px;
+  right: 0px;
+}
+
+
+
+.Slide_wrp .slick-dots li {
+  display: block;
+  padding: 0;
+}
+
+
+}

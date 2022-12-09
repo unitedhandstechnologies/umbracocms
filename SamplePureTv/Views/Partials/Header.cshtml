@@ -1,0 +1,45 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Home>
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="main-header">
+                    <div class="menu_wrp">
+                        <input type="checkbox" class="menu-btn" id="menu-btn" />
+                        <label for="menu-btn" class="menu-icon">
+                            <span class="menu-icon__line"></span>
+                        </label>
+                        <ul class="nav-links">
+@foreach (var item in @Model.HeaderMenuItems)
+{
+                                <li class="nav-link">
+                                <a href="@item.Link.Url"> @item.Caption </a>
+                            </li>
+} 
+                        </ul>
+                        <div class="search_icon">
+                            <a data-fancybox data-src="#trueModal" href="javascript:;"> <i class="fa fa-search"
+                                    aria-hidden="true"></i> </a>
+                        </div>
+
+                        <div class="search_popup" style="display: none;" id="trueModal">
+                            <form class="search-container">
+                                <input type="text" id="search-bar" placeholder="Search..." />
+                                <a href="#">
+                                    <div class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></div>
+                                </a>
+                            </form>
+                        </div>
+
+                        <!--  -->
+                    </div>
+                    <div class="logo">
+                        <a href="/">
+                            <img src="@Model.HeaderLogo.Url()" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

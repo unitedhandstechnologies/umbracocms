@@ -1,0 +1,109 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Home>
+<section class="offers_promotions NoPaMa">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="text">@Model.OffersPromotions.Title</div>
+                <div class="sign_up">
+                    <a href="@Model.OffersPromotions.Links.Url">
+                        <i class="fa fa-long-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <marquee id="MarqueeFooterId" class="footertext" onload="this.start();" onmouseover="this.stop();"
+        onmouseout="this.start();" truespeed="" scrollamount="1" scrolldelay="20" direction="left" loop="repeat">
+        @foreach (var item in @Model.OffersPromotions.OffersList)
+        {
+            <span> @item</span>
+        }
+    </marquee>
+    <div class="clearfix"></div>
+</section>
+<footer class="footer-wrapper" id="footer">
+    <div class="footer-content overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-title">@Model.FooterServices.Title1</div>
+                    @foreach (var item in @Model.FooterServices.Title1links)
+                    {
+                        <a href="@item.FooterLink.Url" class="footer-item"> @item.Title </a>
+                    }
+                </div>
+                <!--  -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-title">@Model.FooterServices.Title2</div>
+                    @foreach (var item in @Model.FooterServices.Title2Links)
+                    {
+                        <a href="@item.FooterLink.Url" class="footer-item"> @item.Title </a>
+                    }
+                </div>
+                <!--  -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-title">@Model.FooterServices.Title3</div>
+                    @foreach (var item in @Model.FooterServices.Title3Links)
+                    {
+                        <a href="@item.FooterLink.Url" class="footer-item"> @item.Title </a>
+                    }
+                </div>
+                <!--  -->
+
+                <div class="col-lg-3 col-md-6 mt-md-5">
+                    @foreach (var item in @Model.FooterServices.SubLinks)
+                    {
+                        <a href="@item.FooterLink.Url" class="footer-item"> @item.Title </a>
+                    }
+                </div>
+            </div>
+            <!--  -->
+            <div class="copy-right">
+                <div class="footer_logo">
+                    <img src="@Model.FooterLogo.Url()" />
+                </div>
+                <div class="social-links">
+                    <div class="socila-icons">
+                        <a href="@Model.InstagramLink.Url">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </div>
+                    <div class="socila-icons">
+                        <a href="@Model.FacebookLink.Url">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </div>
+                    <div class="socila-icons">
+                        <a href="@Model.YoutubeLink.Url">
+                            <i class="fa fa-youtube"></i>
+                        </a>
+                    </div>
+                    <div class="socila-icons">
+                        <a href="@Model.TwitterLink.Url">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                @Model.Copyright <a href="@Model.DisclaimerLink.Url"> Disclaimer </a> &nbsp; <a
+                    href="@Model.PrivacyPolicyLink.Url">
+                    Privacy Policy </a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="itinerary_style">
+        <div class="itinerary">
+            <div class="imageBox imageBefore">
+                <a href="#">
+                    <img src="assets/images/itinerary_img.png" title="Itinerary" />
+                </a>
+            </div>
+            <div class="imageBox imageAfter">
+                <a href="#">
+                    <img src="assets/images/itinerary_img_hover.png" title="Itinerary" />
+                    <span>Itineraries </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
