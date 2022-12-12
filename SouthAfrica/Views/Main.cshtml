@@ -1,39 +1,57 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
-	Layout = null;
+    Layout = null;
 }
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
-        <!-- bootstrap css file -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-        <!-- all.min.css file -->
-        <link rel="stylesheet" href="assets/css/all.min.css" />
-        <!-- font-awesome css file -->
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
 
-        <!-- style.css file -->
-        <link rel="stylesheet" href="assets/css/mystyle.css" />
-        <link rel="stylesheet" href="assets/css/media_query.css" />
-        <link rel="stylesheet" href="assets/css/menu.css" />
-        <link rel="stylesheet" href="assets/css/fancybox.css" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <!-- bootstrap css file -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <!-- all.min.css file -->
+    <link rel="stylesheet" href="assets/css/all.min.css" />
+    <!-- font-awesome css file -->
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-        <link href="assets/css/slick.min.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="assets/css/animations.css" type="text/css" />
+    <!-- style.css file -->
+    <link rel="stylesheet" href="assets/css/mystyle.css" />
+    <link rel="stylesheet" href="assets/css/media_query.css" />
+    <link rel="stylesheet" href="assets/css/menu.css" />
+    <link rel="stylesheet" href="assets/css/fancybox.css" />
 
-        <link rel="stylesheet" href="assets/css/vertical-slide.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="assets/css/slick.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="assets/css/animations.css" type="text/css" />
 
-        <title>South Africa</title>
-    </head>
+    <link rel="stylesheet" href="assets/css/vertical-slide.css" type="text/css" />
+
+    <title>South Africa</title>
+</head>
+
 <body>
-@Html.Partial("Partials/Header")
-@RenderBody()
-@Html.Partial("Partials/Footer")
+    @Html.Partial("Partials/Header")
+   @RenderBody() 
+    @Html.Partial("Partials/Footer")
+    <!-- jquery file -->
+    <script src="assets/js/jquery.js"></script>
+
+    <!-- bootstrap js file -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/menu.js"></script>
+    <script src="assets/js/fancybox.js"></script>
+    <script src="assets/js/slick.min.js"></script>
+    <script src="assets/js/css3-animate-it.js"></script>
+
+    <script src="assets/js/vertical-slide.js"></script>
+
+    <script src="assets/js/scripts.js"></script>
+
 </body>
+
 </html>

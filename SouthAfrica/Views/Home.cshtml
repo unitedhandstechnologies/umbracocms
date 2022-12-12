@@ -1,10 +1,595 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Home>
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Home>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
 	Layout = "main.cshtml";
+	    var slide = (ContentModels.VerticalSlide)Model.Root().Children().Where(x =>
+    x.IsDocumentType("verticalSlide")).FirstOrDefault();
+		    var bucketList = (ContentModels.BucketListHotspots)Model.Root().Children().Where(x =>
+    x.IsDocumentType("bucketListHotspots")).FirstOrDefault();
+			    var home = (ContentModels.HomePage)Model.Root().Children().Where(x =>
+    x.IsDocumentType("homepage")).FirstOrDefault();
 }
-<html>
-<section class="banner_style home_banner" style="margin-bottom: 0px;">
-</section>
-</html>
+    <body>
+        <section class="banner_style home_banner" style="margin-bottom: 0px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="banner_container">
+                            <div class="container">
+                                <h1><span> Welcome to the world’s </span> Leading Adventure Destination</h1>
+                                <div class="highlight">Home to 3000 adventures & more!</div>
+                                <p>Revel in the majesty of nature, take a walk on the wild side, and do things that you’ve never done before. In South Africa, your next great adventure is always waiting to happen!</p>
+                                <a data-fancybox data-small-btn="true" class="btnFillup liquidbg" href="@home.VideoLink.Url">
+
+                                    Watch Video
+                                    <div class="icon"></div>
+                                </a>
+                                <!--  -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--  -->
+
+        <section class="lot_more_style mb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>South Africa <span> has a lot more to offer! </span></h1>
+                    </div>
+                </div>
+                <div class="row animatedParent">
+                    <div class="col-md-4 col-12 left_content_wrp animated fadeInUpShort">
+                        <h4>We are many worlds in one.</h4>
+                        <p>Where lush green forests coexist with sandy deserts. Where you can go diving with sharks, or stroll along the beach.</p>
+                        <p>Known as ‘The Rainbow Nation’, South Africa is where you get to explore who you are and discover who you want to be.</p>
+                    </div>
+                    <div class="col-md-7 offset-md-1 col-12 right_slider_wrp animated fadeInRightShort">
+                        <div class="Home_offer_slider">
+                            <div class="slide">
+                                <div class="image_style">
+                                    <div class="caption">
+                                        <h3>Active Adventure</h3>
+                                        <p>Comfort zones? Never heard of them! Adrenaline junkies, this one’s for you.</p>
+                                    </div>
+
+                                    <img src="assets/images/offers_slide_01.jpg" class="image" />
+                                </div>
+                            </div>
+
+                            <!--  -->
+
+                            <div class="slide">
+                                <div class="image_style">
+                                    <div class="caption">
+                                        <h3>City Lifestyle</h3>
+                                        <p>Electric, vibrant, lively, and never boring! Explore the best of our cities.</p>
+                                    </div>
+                                    <img src="assets/images/offers_slide_02.jpg" class="image" />
+                                </div>
+                            </div>
+
+                            <!--  -->
+
+                            <div class="slide">
+                                <div class="image_style">
+                                    <div class="caption">
+                                        <h3>Cultural Roots</h3>
+                                        <p>Who are we? What makes us South African? Find out here!</p>
+                                    </div>
+
+                                    <img src="assets/images/offers_slide_03.jpg" class="image" />
+                                </div>
+                            </div>
+
+                            <!--  -->
+
+                            <div class="slide">
+                                <div class="image_style">
+                                    <div class="caption">
+                                        <h3>Wildlife Safari</h3>
+                                        <p>Explore South Africa at its very best - wild and free!</p>
+                                    </div>
+
+                                    <img src="assets/images/offers_slide_04.jpg" class="image" />
+                                </div>
+                            </div>
+
+                            <!--  -->
+
+                            <div class="slide">
+                                <div class="image_style">
+                                    <div class="caption">
+                                        <h3>Scenic Outdoors</h3>
+                                        <p>Mountains, valleys, lakes and trees; when it comes to nature, South Africa is the place to be!</p>
+                                    </div>
+
+                                    <img src="assets/images/offers_slide_05.jpg" class="image" />
+                                </div>
+                            </div>
+
+                            <!--  -->
+
+                            <div class="slide">
+                                <div class="image_style">
+                                    <div class="caption">
+                                        <h3>Coastal Beaches</h3>
+                                        <p>Get a healthy dose of Vitamin B-EACH with soft white sands and sparkling seas.</p>
+                                    </div>
+
+                                    <img src="assets/images/offers_slide_06.jpg" class="image" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--  -->
+
+        <!-- Vertical Slider -->
+
+        <section>
+            <div class="container-fuild">
+                
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="Slide_wrp">
+                            <div class="slides">
+								@foreach (ContentModels.Slide item in slide.Children())
+								{
+								    <div class="slide" style="background-image: url(@item.Image.Url());">
+                                    <div class="caption_style">
+                                        <h1>@item.Title</h1>
+                                        <h2>@item.Description</h2>
+                                        <div class="slide_btn">
+                                            <a href="@item.Link.Url" tabindex="0"> Know More <i class="fa fa-long-arrow-right"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+								}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  -->
+
+        <section class="Bucket_list_style">
+            <div class="container-fluid">
+                <div class="row animatedParent">
+                    <div class="col-12 NoPadMar">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="sec_heading">
+                                        <h1>Bucket list Hotspots</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="Bucket_list animated fadeInRightShort">
+							@foreach (ContentModels.HorizontalSlide item in bucketList.Children())
+							{
+                            <div class="slide">
+                                <div class="thumbnail_style">
+                                    <div class="static_text">
+                                        <h2>@item.Title</h2>
+                                        <h1>@item.SubTitle</h1>
+                                    </div>
+                                    <div class="static_text_bottom">@item.Description</div>
+                                    <img src="@item.Image.Url()" />
+                                    <div class="content_thumb">
+                                        <div class="hover_content">
+                                            <div class="sec_wrp">
+                                                <div class="title">Best time to visit</div>
+                                                <div class="month">@item.BestTimeToVisit</div>
+                                            </div>
+                                            <!--  -->
+                                            <div class="sec_wrp">
+                                                <div class="title">Known for</div>
+                                                <p>@item.KnownFor</p>
+                                            </div>
+                                            <!--  -->
+                                            <div class="sec_wrp" style="border: 0px;">
+                                                <div class="title">Budget</div>
+                                                <p>
+													@item.Budget
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+							}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="touchdown_style mb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="sec_heading white_text">
+                            <h1>Touchdown!</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 Left_bar">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="image_effect">
+                                    <figure class="effect-ruby">
+                                        <img src="assets/images/touchdown_img_01.jpg" />
+                                        <figcaption>
+                                            <h2>VISA & IMMIGRATION <span> Hassle-free processes for the perfect vacation. </span></h2>
+
+                                            <div class="hidden">
+                                                <div class="button">
+                                                    <a href="@home.Touchdown1.Url">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="image_effect">
+                                    <figure class="effect-ruby">
+                                        <img src="assets/images/touchdown_img_02.jpg" />
+                                        <figcaption>
+                                            <h2>INTERNATIONAL TRAVEL UPDATES <span> Everything you need to know. </span></h2>
+                                            <div class="hidden">
+                                                <div class="button">
+                                                    <a href="@home.Touchdown2.Url"> <i class="fa fa-long-arrow-right"></i> </a>
+                                                </div>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="col-md-8 Right_bar">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="image_effect">
+                                    <figure class="effect-ruby">
+                                        <img src="assets/images/touchdown_img_05.jpg" />
+                                        <figcaption>
+                                            <h2>INTERNATIONAL TRAVEL UPDATES <span> Everything you need to know. </span></h2>
+                                            <div class="hidden">
+                                                <div class="button">
+                                                    <a href="@home.Touchdown3.Url"> <i class="fa fa-long-arrow-right"></i> </a>
+                                                </div>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="image_effect">
+                                            <figure class="effect-ruby">
+                                                <img src="assets/images/touchdown_img_03.jpg" />
+                                                <figcaption>
+                                                    <h2>
+                                                        GETTING HERE
+                                                        <span>
+                                                            Flights to South Africa: <br />
+                                                            Fly into the Rainbow Nation on great deals.
+                                                        </span>
+                                                    </h2>
+                                                    <div class="hidden">
+                                                        <div class="button">
+                                                            <a href="@home.Touchdown4.Url"> <i class="fa fa-long-arrow-right"></i> </a>
+                                                        </div>
+                                                    </div>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                    </div>
+
+                                    <!--  -->
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="image_effect">
+                                            <figure class="effect-ruby">
+                                                <img src="assets/images/touchdown_img_04.jpg" />
+                                                <figcaption>
+                                                    <h2>GETTING AROUND <span> Discover South Africa by road, train or air. </span></h2>
+                                                    <div class="hidden">
+                                                        <div class="button">
+                                                            <a href="@home.Touchdown5.Url"> <i class="fa fa-long-arrow-right"></i> </a>
+                                                        </div>
+                                                    </div>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Map Start -->
+
+        <section class="home_map_style NoPadMar animatedParent">
+            <div class="container-fluid NoPadMar scroll animated fadeInUpShort">
+                <div class="centered-cover">
+                    <h1>Discover South Africa</h1>
+                    <div class="flex-break">
+                        <select class="form">
+							@foreach (var item in @home.List)
+							{
+                            <option value="Active-Adventure"> @item.City </option>
+							}
+                        </select>
+                        <!-- Active-Adventure Start -->
+                        <div class="box Active-Adventure">
+                            <ul class="map_points">
+                                <li class="Northern_Cape">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_Northern_Cape.png" />
+                                    </div>
+                                    Northern Cape
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="Western_Cape">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_Western_Cape.png" />
+                                    </div>
+                                    Western Cape
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="Limpopo">
+                                    <div class="img_div">
+                                        <img src="@home.LimboboIcon.Url()" />
+                                    </div>
+                                    Limpopo
+                                    <a data-fancybox data-src="@home.LimboboVideo" href="@home.LimboboVideo">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="Gauteng">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_Gauteng.png" />
+                                    </div>
+                                    Gauteng
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="Mpumalanga">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_Mpumalanga.png" />
+                                    </div>
+                                    Mpumalanga
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="KwaZul_Natal">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_KwaZul_Natal.png" />
+                                    </div>
+                                    KwaZul Natal
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="Free_State">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_Free_State.png" />
+                                    </div>
+                                    Free State
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="Eastern_Cape">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_Eastern_Cape.png" />
+                                    </div>
+                                    Eastern Cape
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="North_West">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_North_West.png" />
+                                    </div>
+                                    North West
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Wildlife Safari Start -->
+                        <div class="box Wildlife-Safari">
+                            <ul class="map_points">
+                                <li class="Bungee_Jumping">
+                                    Bungee Jumping
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="Limpopo">
+                                    <div class="img_div">
+                                        <img src="assets/images/LIMPOPO.png" />
+                                    </div>
+                                    Limpopo
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="Mpumalanga">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_Mpumalanga.png" />
+                                    </div>
+                                    Mpumalanga
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="KwaZul_Natal">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_KwaZul_Natal.png" />
+                                    </div>
+                                    KwaZul Natal
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="Free_State">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_Free_State.png" />
+                                    </div>
+                                    Free State
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="Eastern_Cape">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_Eastern_Cape.png" />
+                                    </div>
+                                    Eastern Cape
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="North_West">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_North_West.png" />
+                                    </div>
+                                    North West
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- cultural-Roots Start -->
+                        <div class="box cultural-Roots">
+                            <ul class="map_points">
+                                <li class="Northern_Cape">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_Northern_Cape.png" />
+                                    </div>
+                                    Northern Cape
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="Western_Cape">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_Western_Cape.png" />
+                                    </div>
+                                    Western Cape
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="Limpopo">
+                                    <div class="img_div">
+                                        <img src="assets/images/LIMPOPO.png" />
+                                    </div>
+                                    Limpopo
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="Mpumalanga">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_Mpumalanga.png" />
+                                    </div>
+                                    Mpumalanga
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="KwaZul_Natal">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_KwaZul_Natal.png" />
+                                    </div>
+                                    KwaZul Natal
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="Free_State">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_Free_State.png" />
+                                    </div>
+                                    Free State
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="Eastern_Cape">
+                                    <div class="img_div">
+                                        <img src="assets/images/icon_Eastern_Cape.png" />
+                                    </div>
+                                    Eastern Cape
+                                    <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <img src="assets/images/map.jpg" />
+            </div>
+        </section>
+        <!-- Page Scroll bar -->
+        <div class="scrollbar">
+            <div class="scrollball">
+                <span></span>
+            </div>
+        </div>
+        <!-- Page Scroll bar -->
+
+        <!-- MAP POPUP START -->
+        <div style="display: none;" id="Bungee_Jumping" class="map_popup_style">
+            <div class="video_wrp">
+                <video width="100%" height="100%" controls id="myVideo">
+                    <source src="https://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.mp4" type="video/mp4" />
+                    <source src="https://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.webm" type="video/webm" />
+                    <source src="https://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.ogv" type="video/ogg" />
+                </video>
+            </div>
+            <div class="content_wrp">
+                <div class="icon_wrp">
+                    <img src="assets/images/activity_icon_bungee_jumping.png" />
+                </div>
+                <h2>Eastern Cape</h2>
+                <h1>Bungee Jumping</h1>
+                <p>A guaranteed rush of adrenaline as you dive head-first into this adventure!</p>
+            </div>
+        </div>
+    </body>
