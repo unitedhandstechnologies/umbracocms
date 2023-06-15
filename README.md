@@ -52,3 +52,15 @@ In that page enter name, email and password. There will be a button called "Chan
 After clicking the install button, it will open the Umbraco content page, where we can update the website's content.
 
 Umbraco settings page is used to create content definition.
+
+## Dev Environment
+
+Instance : http://65.2.172.18:5000/
+Admin Url : http://65.2.172.18:5000/umbraco
+Admin Email Id : auxesystech@gmail.com
+Admin Password : auxes@1234
+
+## Local db
+
+Email Id : auxesystech@gmail.com
+Password : auxes@1234
