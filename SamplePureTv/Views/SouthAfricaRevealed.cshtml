@@ -1,0 +1,193 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.SouthAfricaRevealed>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+	var model = Model.Root();
+	var rainbownation = model.Descendants<ContentModels.Rainbow>().Where(x => x.IsVisible());
+	var tasteOfAdventure = model.Descendants<ContentModels.Adventure>().Where(x => x.IsVisible());
+	var seasons = model.Descendants<ContentModels.Season>().Where(x => x.IsVisible());
+}
+<section class="banner_style" style="margin-bottom: 0px; background-image:url(@Model?.RevealedImage.Url())">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="banner_container">
+					<div class="container">
+						<h1><span style="display: inline-block;"> @Model?.RevealedTitle </span> @Model?.RevealedSubtitle
+						</h1>
+
+						<!--  -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--  -->
+
+<div>
+	<div class="revealded_Nav_bar">
+		<ul>
+			<li><a href="#Rainbow_Nation"> @Model.Tab1</a></li>
+			<li><a href="#Seasons_South_Africa"> @Model.Tab2 </a></li>
+			<li><a href="#Geography"> @Model.Tab3</a></li>
+			<li><a href="#Currency"> @Model.Tab4</a></li>
+			<li><a href="#Taste_Adventure"> @Model.Tab5 </a></li>
+			<li><a href="#Getting_Around"> @Model.Tab6 </a></li>
+		</ul>
+	</div>
+</div>
+
+<section class="revealded_top_sec" id="Rainbow_Nation">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12 NoPadMar">
+				<div class="caption_wrp">
+					<h1>@Model?.RainbowTitle</h1>
+					<p>@Model?.RainbowDescription</p>
+				</div>
+
+				<div class="revealed_carousel animatedParent">
+					@foreach (ContentModels.Rainbow item in rainbownation)
+					{
+						<div class="slide animated fadeInUpShort">
+							<div class="caption">@item.RainbowImageContent</div>
+							<div class="image_style">
+								<img src="@item.RainbowImage.Url()" class="image" />
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!--  -->
+
+<section id="Seasons_South_Africa" class="animatedParent">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="sec_heading">
+					<h1>@Model?.SeasonTitle</h1>
+				</div>
+
+				<p>@Model?.SeasonContent</p>
+
+				<div class="revealded_thumb animated fadeInUpShort">
+					@foreach (ContentModels.Season item in seasons)
+					{
+						<figure class="effect-lily">
+							<img src="@item?.SeasonImage.Url()" />
+							<figcaption>
+								<div>
+									<h2>@item?.SeasonImageTitle</h2>
+									<p>@item?.SeasonImageContent</p>
+								</div>
+								<a href="#">View more</a>
+							</figcaption>
+						</figure>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!--  -->
+
+<!-- Geography -->
+<section class="Geography_style" id="Geography">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12 NoPadMar center_text">
+				<div class="left_content">
+					<div class="sec_heading">
+						<h1>@Model?.GeographyTitle</h1>
+					</div>
+
+					<p>@Model?.GeographyContent</p>
+
+				</div>
+
+				<div class="map_wrp">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6950242.625122249!2d21.453251781426363!3d-28.894922396747678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1c34a689d9ee1251%3A0xe85d630c1fa4e8a0!2sSouth%20Africa!5e0!3m2!1sen!2sin!4v1664808261104!5m2!1sen!2sin"
+						style="border: 0;" allowfullscreen="" loading="lazy"
+						referrerpolicy="no-referrer-when-downgrade"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Currency -->
+<section class="Currency_style" id="Currency">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 center_text">
+				<div class="left_content">
+					<div class="sec_heading">
+						<h1>@Model?.CurrencyTitle</h1>
+					</div>
+					<p>@Model?.CurrencyDescription</p>
+				</div>
+
+				<div class="Currency_right">
+					<div class="Rand_style">1 South African Rand equals</div>
+					<div class="INR_style">4.91 Indian Rupee</div>
+					<span> 12 Aug, 10:00 am UTC · Disclaimer </span>
+
+					<div class="input_wrp_box">
+						<div class="input_style"><input type="text" placeholder="1" /></div>
+						<div class="right_map">South Africa Rand <img src="~/assets/images/south_africa.png" /></div>
+					</div>
+
+					<div class="input_wrp_box">
+						<div class="input_style"><input type="text" placeholder="4.91" /></div>
+						<div class="right_map">India <img src="~/assets/images/india.png" /></div>
+					</div>
+
+					<div class="clearfix"></div>
+
+					<button class="btn_style">Convert</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="Taste_Adventure animatedParent mb-0" id="Taste_Adventure">
+	<div class="container-fluid">
+		<div class="row animatedParent">
+			<div class="col-12 NoPadMar">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="sec_heading white_text">
+								<h1>@Model?.AdventureHeading</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="Adventure_slider animated fadeInRightShort">
+					@foreach (ContentModels.Adventure item in tasteOfAdventure)
+					{
+						<div class="slide">
+							<div class="thumbnail_style">
+								<div class="bottom_patch">
+									<h2>@item.AdventureTitle</h2>
+									<p>@item.AdventureDescription</p>
+								</div>
+								<img src="@item.AdventureImage.Url()" />
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

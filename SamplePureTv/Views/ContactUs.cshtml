@@ -1,0 +1,176 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ContactUs>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+    var model = Model.Root();
+	var emergency = model.Descendants<ContentModels.EmergencySlide>().Where(x => x.IsVisible()); 
+}
+
+        <section class="banner_style contact_bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="banner_container">
+                            <div class="container">
+                                <div class="contact_banner_wrp animatedParent">
+                                    <div class="contact_banner animated fadeInLeftShort"><img src="@Model?.ContactImage.Url()" /></div>
+                                    <div class="contact_right_form">
+                                        <h4><span> @Model?.ContactFirstTitle</span>@Model?.ContactSecondTitle<b> @Model?.ContactSubtitle</b></h4>
+                                        
+                                        @using (Html.BeginUmbracoForm("SubmitForm","ContactSmtp", FormMethod.Post))
+                                        {
+                                            <div class="row input-container line_input">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="styled-input">
+                                                    <input type="text" id ="FullName" name ="FullName" required  />
+                                                    <label> @Model?.FullName<span>*</span> </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="styled-input" style="float: right;">
+                                                    <input type="text" id ="LastName" name ="LastName" required />
+                                                    <label> @Model?.LastName<span>*</span> </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="styled-input">
+                                                    <input type="text" id ="PhoneNumber" name ="PhoneNumber" required />
+                                                    <label>@Model?.PhoneNumber<span>*</span> </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="styled-input">
+                                                    <input type="text" id ="Email" name ="Email" required />
+                                                    <label> @Model?.Email<span>*</span> </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12">
+                                                <div class="styled-input wide">
+                                                    <textarea id ="YourQuestion" name ="YourQuestion" required></textarea>
+                                                    <label>@Model?.YourQuestion<span>*</span> </label>
+                                                    <div class="send_icon_style"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12"></div>
+                                            <button type="submit" class="submit_btn" value="Submit Your Request">Submit Your Request</button>
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <!--  -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  -->
+
+        <section class="contact_map animatedParent">
+            <div class="container animated fadeInUpShort">
+                <div class="row">
+                    <div class="col-12">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d889.8093982779013!2d72.86878319980514!3d19.068983671049693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c96947c59ebf%3A0xe0dcf4376ddae213!2sSouth%20Africa%20Tourism%20Board!5e0!3m2!1sen!2sin!4v1665139251762!5m2!1sen!2sin"
+                            width="100%"
+                            height=""
+                            style="border: 0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                        ></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  -->
+
+        <section>
+            <div class="container Emergency_bar_wrp">
+                <div class="row">
+                    <div class="col-12 NoPadMar">
+                        <div class="card_wrp caption">
+                            <div class="text"> @Model?.EmergencyTitle <br /> @Model?.EmergencySubtitle
+                            </div>
+                        </div>
+
+                        <!--  -->
+                        @foreach (ContentModels.EmergencySlide item in emergency)
+                        {
+                            <div class="card_wrp">
+                            <div class="icon"><img src="@item.EmergencyIcon.Url()" /></div>
+                            <div class="text">@item.EmergencyContactName <b> @item.EmergencyNumber </b></div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="animatedParent">
+            <div class="container faq_wrp animated fadeInUpShort">
+                <div class="sec_heading">
+                    <h1>Frequently Asked Questions</h1>
+                </div>
+
+                <div class="accordion" id="accordionExample">
+                    @{
+                        var show = "show";
+                        var border_bottom_0 = string.Empty;
+                        var collapsed = string.Empty;
+                        var number = byte.MinValue;
+                        var value_ = byte.MinValue;
+                    }
+                        <!-- Tab 1 starts -->
+                    @foreach (var item in Model.QuestionList)
+                    {
+                        number = ++number;
+                        value_ = ++value_;
+
+                    <div class="accordion-item">                      
+                        <h2 class="accordion-header" id="panelsStayOpen-@number">
+                            <button class="accordion-button @collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse-@number" aria-expanded="true" aria-controls="panelsStayOpen-collapse-@number">
+                                @item.QaTitle
+                            </button>
+                        </h2>
+
+                        <div id="panelsStayOpen-collapse-@number" class="accordion-collapse collapse @show" aria-labelledby="panelsStayOpen-@number" data-bs-parent="#accordionExample">
+                            <div class="accordion-body"> 
+                            @foreach (var contact in @item.QaItems)
+                            {
+                                number = ++number;
+
+                                <div class="accordion-item @border_bottom_0">
+                                    <h2 class="accordion-header" id="subhead_@value_@number">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@value_@number" aria-expanded="false" aria-controls="collapse_@value_@number">
+                                            @contact.Question
+                                        </button>
+                                    </h2>
+                                    <div id="collapse_@value_@number" class="accordion-collapse collapse" aria-labelledby="subhead_@value_@number">
+                                        <div class="accordion-body">
+                                            @contact.Answer
+                                        </div>
+                                    </div>
+                                </div>
+                            }                                                                                                         
+                            </div>
+                        </div>   
+                    </div>
+                    show = null;
+                    border_bottom_0 = "border-bottom-0";
+                    collapsed = "collapsed";
+                    } 
+                </div>
+            </div>
+        </section>

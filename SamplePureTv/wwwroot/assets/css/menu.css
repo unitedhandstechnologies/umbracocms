@@ -28,12 +28,17 @@
 }
 
 
-
-
-
 .main-header .logo {
+  float: left;
+  margin-top: -50px;
+  margin-left: -40px; 
+}
+
+@media only screen and (max-width: 1024px) {
+  .main-header .logo {
   float: right;
   margin-top: -50px;
+  }
 }
 
 

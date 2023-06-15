@@ -73,6 +73,20 @@ body {
   background-position: center center !important;
  
 }
+ 
+
+.western_cape { background-image: url(../images/slide_western_cape.jpg) !important; }
+.eastern_cape { background-image: url(../images/slide_eastern_cape.jpg) !important; }
+.free_state { background-image: url(../images/slide_free_state.jpg) !important; }
+.Gauteng { background-image: url(../images/slide_gauteng.jpg) !important; }
+.Mpumalanga { background-image: url(../images/slide_mpumalanga.jpg) !important; }
+.KwaZulu_Natal { background-image: url(../images/slide_KwaZulu_Natal.jpg) !important; }
+.North_West { background-image: url(../images/slide_north_west.jpg) !important; }
+.Northern_Cape  { background-image: url(../images/slide_northern_cape.jpg) !important; }
+.Limpopo  { background-image: url(../images/slide_limpopo.jpg) !important; }
+
+
+
 
 .slick-dots {
   position: absolute;
@@ -81,9 +95,12 @@ body {
   text-align: left;
 }
 
+
 .slick-dots li {
   display: block;
 }
+
+
 
 /* .slick-dots li button {
   font-size: 0;
@@ -111,7 +128,9 @@ body {
   border: 0px;
 }
 
+
 .slick-dots li.slick-active button { background-color: #FFCE00; }
+
 
 
 

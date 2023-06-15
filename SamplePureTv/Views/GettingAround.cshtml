@@ -1,0 +1,268 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.GettingAround>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+    var model = Model.Root();
+}
+
+        <section class="banner_style" style="margin-bottom: 0px; background-image:url(@Model?.GettingAroundImage.Url())">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="banner_container">
+                            <div class="container">
+                                <h1><span style="display: inline-block;">  @Model?.GettingAroundTitle    </span>  @Model?.GettingAroundSubtitle</h1>
+
+                              <div class="subtext_banner"> @Model?.GettingAroundContent </div>
+
+                                <!--  -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--  -->
+
+
+        <section class="animatedParent">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 getting_tab">
+
+                        <div class="tab_container">
+                            <input id="tab1" type="radio" name="tabs" checked>
+                            <label for="tab1" class="red"> <i class="fa fa-car red" aria-hidden="true"></i> <span> @Model?.CarTitle </span></label>
+
+                            <input id="tab2" type="radio" name="tabs">
+                            <label for="tab2" class="green"> <i class="fa fa-bus green"></i> <span>@Model?.BusTitle</span></label>
+
+                            <input id="tab3" type="radio" name="tabs">
+                            <label for="tab3" class="yellow"> <i class="fa fa-subway yellow" aria-hidden="true"></i> <span> @Model?.TrainTitle </span></label>
+
+                            <input id="tab4" type="radio" name="tabs">
+                            <label for="tab4" class="blue"> <i class="fa fa-plane blue" aria-hidden="true"></i> <span> @Model?.FlightTitle </span></label>
+
+
+                        <section id="content1" class="tab-content">
+
+                            <div class="banner_wrp"> <img src="@Model?.CarImage.Url()"> </div>
+                                <h1> @Model?.CarSubtitle </h1>
+
+                                <div class="col-md-8 mb-4 mb-xl-5">  @Model?.CarDescription</div>                           
+
+
+                            <div class="clearfix"> </div>
+
+
+                            <div class="card">
+
+                                <div class="sub_card">  
+
+                                    @foreach( var item in @Model?.LeftSection)
+                                    {
+                                        <div class="icon_wrp">   <img src="@item.VehicleLogo.Url()">  </div>
+                                        <h3> @item.VehicleType </h3>
+                                        <p>  @item.VehicleTypeDescription</p>  
+                                    }
+                                </div> 
+
+                            </div>
+
+                            <div class="card">
+
+                                <div class="sub_card">  
+                                    @foreach (var item in @Model?.MiddleSection)
+                                    {
+                                        <div class="icon_wrp">   <img src="@item.VehicleLogo.Url()">  </div>
+                                        <h3>  @item.VehicleType </h3>
+                                        <p>  @item.VehicleTypeDescription </p>   
+                                    }                              
+                                </div> 
+
+                            </div>
+
+                            <div class="card" style="border: none;">
+
+                                <div class="sub_card">  
+                                    @foreach (var item in @Model?.RightSection)
+                                    {
+                                        <div class="icon_wrp">   <img src="@item.VehicleLogo.Url()">  </div>
+                                        <h3>  @item.VehicleType </h3>
+                                        <p>  @item.VehicleTypeDescription </p>   
+                                    }  
+                                </div> 
+
+                            </div>
+
+
+                            <div class="address_wrp">  
+                                @foreach (var item in @Model?.MailContent)
+                                {
+                                    <div class="new_box">
+                                    <h2>   @item.MailTitle     </h2>
+                                    <span>  <i class="fa fa-phone" aria-hidden="true"></i> </span> <p> <b> @item.Telephone</b> @item.TelephoneNumber    </p>
+                                    <span>  <i class="fa fa-envelope" aria-hidden="true"></i> </span> <p> <b> @item.Email </b> @item.EmailAddress </p>
+                                    <span>  <i class="fa fa-globe" aria-hidden="true"></i> </span> <p> <b> @item.Web </b> @item.WebsiteName</p>                                           
+                                    </div>
+                                }
+                            </div>
+
+                        </section>
+
+                        <!--  -->
+                        <section id="content2" class="tab-content">
+
+                            <div class="banner_wrp"> <img src="@Model?.BusImage.Url()"> </div>
+                                <h1> @Model?.BusSubtitle </h1>
+                                <div class="col-md-8 mb-4 mb-xl-5">  @Model?.BusDescription  </div>
+
+                                <div class="clearfix"> </div>
+
+
+                                <div class="card">
+
+                                    <div class="sub_card">  
+                                        @foreach (var item in @Model?.LeftSectionBus)
+                                        {
+                                            <div class="icon_wrp">   <img src="@item.VehicleLogo.Url()">  </div>
+                                            <h3>  @item.VehicleType </h3>
+                                            <p>  @item.VehicleTypeDescription </p>   
+                                        }
+                                    </div> 
+
+                               </div>
+
+                               <div class="card" style="border: none;">
+
+                                    <div class="sub_card">  
+                                        @foreach (var item in @Model?.MiddleSectionBus)
+                                        {
+                                            <div class="icon_wrp">   <img src="@item.VehicleLogo.Url()">  </div>
+                                            <h3>  @item.VehicleType </h3>
+                                            <p>  @item.VehicleTypeDescription </p>   
+                                        } 
+                                    </div>
+
+                               </div>
+
+
+                               <div class="address_wrp">  
+                                    @foreach (var item in @Model?.MailContentBus)
+                                    {
+                                        <div class="new_box">
+                                        <h2>   @item.MailTitle     </h2>
+                                        <span>  <i class="fa fa-phone" aria-hidden="true"></i> </span> <p> <b> @item.Telephone</b> @item.TelephoneNumber    </p>
+                                        <span>  <i class="fa fa-envelope" aria-hidden="true"></i> </span> <p> <b> @item.Email </b> @item.EmailAddress </p>
+                                        <span>  <i class="fa fa-globe" aria-hidden="true"></i> </span> <p> <b> @item.Web </b> @item.WebsiteName</p>                                           
+                                        </div>
+                                    }
+                                </div>
+
+                            </section>
+
+
+                            <!-- Train -->
+
+                            <section id="content3" class="tab-content">
+
+                                <div class="banner_wrp"> <img src="@Model?.TrainImage.Url()"> </div>
+                                    <h1>  @Model?.TrainSubtitle </h1>
+                                    <div class="col-md-8 mb-4 mb-xl-5">  @Model?.TrainDescription</div>
+
+                                <div class="clearfix"> </div>
+
+                                <div class="card">
+
+                                   <div class="sub_card">  
+                                        @foreach (var item in @Model?.LeftSectionTrain)
+                                        {
+                                            <div class="icon_wrp">   <img src="@item.VehicleLogo.Url()">  </div>
+                                            <h3>  @item.VehicleType </h3>
+                                            <p>  @item.VehicleTypeDescription </p>   
+                                        } 
+                                   </div>
+
+                               </div>
+
+                               <div class="card" style="border: none;">
+
+                                   <div class="sub_card">  
+                                        @foreach (var item in @Model?.MiddleSectionTrain)
+                                        {
+                                            <div class="icon_wrp">   <img src="@item.VehicleLogo.Url()">  </div>
+                                            <h3>  @item.VehicleType </h3>
+                                            <p>  @item.VehicleTypeDescription </p>   
+                                        } 
+                                   </div>
+
+                                </div>
+
+                                <div class="address_wrp">   
+                                     @foreach (var item in @Model?.MailContentTrain)
+                                        {
+                                            <div class="new_box">
+                                            <h2>   @item.MailTitle     </h2>
+                                            <span>  <i class="fa fa-phone" aria-hidden="true"></i> </span> <p> <b> @item.Telephone</b> @item.TelephoneNumber    </p>
+                                            <span>  <i class="fa fa-envelope" aria-hidden="true"></i> </span> <p> <b> @item.Email </b> @item.EmailAddress </p>
+                                            <span>  <i class="fa fa-globe" aria-hidden="true"></i> </span> <p> <b> @item.Web </b> @item.WebsiteName</p>                                           
+                                            </div>
+                                        }
+                                </div> 
+
+                            </section>
+
+
+                            <!-- Flight -->
+
+                            <section id="content4" class="tab-content">
+
+                                <div class="banner_wrp"> <img src="@Model?.FlightImage.Url()"> </div>
+                                    <h1>  @Model?.FlightSubtitle </h1>
+                                    <div class="col-md-8 mb-4 mb-xl-5"> @Model?.FlightDescription</div>
+
+                                <div class="clearfix"> </div>
+
+                                <div class="card">
+
+                                   <div class="sub_card">  
+                                        @foreach (var item in @Model?.LeftSectionFlight)
+                                        {
+                                            <div class="icon_wrp">   <img src="@item.VehicleLogo.Url()">  </div>
+                                            <h3>  @item.VehicleType </h3>
+                                            <p>  @item.VehicleTypeDescription </p>   
+                                        } 
+                                    </div>
+                                </div>
+
+                                <div class="card" style="border: none;">
+
+                                   <div class="sub_card">  
+                                        @foreach (var item in @Model?.MiddleSectionFlight)
+                                        {
+                                            <div class="icon_wrp">   <img src="@item.VehicleLogo.Url()">  </div>
+                                            <h3>  @item.VehicleType </h3>
+                                            <p>  @item.VehicleTypeDescription </p>   
+                                        } 
+                                    </div>
+                                </div>
+
+                                <div class="address_wrp">   
+                                    @foreach (var item in @Model?.MailContentFlight)
+                                    {
+                                        <div class="new_box">
+                                        <h2>   @item.MailTitle     </h2>
+                                        <span>  <i class="fa fa-phone" aria-hidden="true"></i> </span> <p> <b> @item.Telephone</b> @item.TelephoneNumber    </p>
+                                        <span>  <i class="fa fa-envelope" aria-hidden="true"></i> </span> <p> <b> @item.Email </b> @item.EmailAddress </p>
+                                        <span>  <i class="fa fa-globe" aria-hidden="true"></i> </span> <p> <b> @item.Web </b> @item.WebsiteName</p>                                           
+                                        </div>
+                                    }
+                                </div>
+
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>

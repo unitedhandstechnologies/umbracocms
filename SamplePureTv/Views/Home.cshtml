@@ -2,782 +2,576 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Home>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
-    Layout = null;
-    var slides = (ContentModels.SlideList)Model.Root().Children().Where(x =>
-    x.IsDocumentType("slideList")).FirstOrDefault();
-    var virticalslides = (ContentModels.VerticalSlideList)Model.Root().Children().Where(x =>
-    x.IsDocumentType("verticalSlideList")).FirstOrDefault();
-    var bucketList = (ContentModels.BucketListHotspots)Model.Root().Children().Where(x =>
-    x.IsDocumentType("bucketListHotspots")).FirstOrDefault();
-    var running = (ContentModels.RunningSlideList)Model.Root().Children().Where(x =>
-    x.IsDocumentType("runningSlideList")).FirstOrDefault();
+    Layout = "Master.cshtml";
+    var model = Model.Root();
+    var value = string.Empty;
+    var dynamicList = model.Descendants<ContentModels.Dynamic>().Where(x => x.IsVisible());
+    var verticalList = model.Descendants<ContentModels.Vertical>().Where(x => x.IsVisible());
+    var bucketList = model.Descendants<ContentModels.BucketList>().Where(x => x.IsVisible());
+
 }
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="icon" type="image/x-icon" href="~/assets/images/favicon.ico" />
-
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
-    <!-- bootstrap css file -->
-    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
-    <!-- all.min.css file -->
-    <link rel="stylesheet" href="~/assets/css/all.min.css" />
-    <!-- font-awesome css file -->
-
-    <!-- style.css file -->
-    <link rel="stylesheet" href="~/assets/css/mystyle.css" />
-    <link rel="stylesheet" href="~/assets/css/media_query.css" />
-    <link rel="stylesheet" href="~/assets/css/menu.css" />
-    <link rel="stylesheet" href="~/assets/css/fancybox.css" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link href="~/assets/css/slick.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="~/assets/css/animations.css" type="text/css" />
-
-    <link rel="stylesheet" href="~/assets/css/vertical-slide.css" type="text/css" />
-
-    <title>South Africa</title>
-</head>
-
-<body>
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="main-header">
-                        <div class="menu_wrp">
-                            <input type="checkbox" class="menu-btn" id="menu-btn" />
-                            <label for="menu-btn" class="menu-icon">
-                                <span class="menu-icon__line"></span>
-                            </label>
-
-                            <ul class="nav-links">
-                                <li class="nav-link">
-                                    <a href="revealed.html"> South Africa: Revealed </a>
-                                </li>
-                                <li class="nav-link">
-                                    <a href="#"> Getting Around </a>
-                                </li>
-                                <li class="nav-link">
-                                    <a href="travel-trade-partners.html"> Travel Trade Partners </a>
-                                </li>
-                                <li class="nav-link">
-                                    <a href="#"> Blog </a>
-                                </li>
-                                <li class="nav-link">
-                                    <a href="newsroom.html"> Newsroom </a>
-                                </li>
-                                <li class="nav-link">
-                                    <a href="/about"> Contact Us </a>
-                                </li>
-                            </ul>
-
-                            <div class="search_icon">
-                                <a data-fancybox data-src="#trueModal" href="javascript:;"> <i class="fa fa-search"
-                                        aria-hidden="true"></i> </a>
-                            </div>
-
-                            <div class="search_popup" style="display: none;" id="trueModal">
-                                <form class="search-container">
-                                    <input type="text" id="search-bar" placeholder="Search..." />
-                                    <a href="#">
-                                        <div class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></div>
-                                    </a>
-                                </form>
-                            </div>
-
-                            <!--  -->
-                        </div>
-                        <div class="logo">
-                            <a href="index.html">
-                                <img src="assets/images/Logo.png" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <section class="banner_style" style="background-image: url(@Model?.TitleImage.Url()">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="banner_container">
-                        <div class="container">
-                            <h1><span>@Model?.Title</span> @Model?.SubTitle</h1>
-                            <div class="highlight">Home to 3000 adventures & more!</div>
-                            <br>
-                            <span style="color:#fff">@Model?.Description</span>
-                            <br>
-                            <a data-fancybox data-small-btn="true" class="btnFillup liquidbg"
-                                href="https://www.youtube.com/watch?v=rahRaVtEQaM">
-                                Watch Video
-                                <div class="icon"></div>
-                            </a>
-                            <!--  -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--  -->
-
-    <section class="lot_more_style mb-0">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1>@Model?.PartTitle1<span>@Model?.PartSubTitle</span></h1>
-                </div>
-            </div>
-            <div class="row animatedParent">
-                <div class="col-md-4 col-12 left_content_wrp animated fadeInUpShort">
-                    <h4>@Model?.PartSudoTitle</h4>
-                    @Model?.PartTitle2
-                    <br>
-                    <br>
-                    @Model?.PartTitle3
-                </div>
-                <div class="col-md-7 offset-md-1 col-12 right_slider_wrp animated fadeInRightShort">
-                    <div class="Home_offer_slider">
-                        @{
-                            foreach (ContentModels.Slide item in slides.Children())
-                            {
-                                <div class="slide">
-                                    <div class="image_style">
-                                        <div class="caption">
-                                            <h3>@item.SlideTitle</h3>
-                                            <p>@item.SlideDescription</p>
-                                        </div>
-                                        <img src=@item.SlideImage.Url() />
-                                    </div>
-                                </div>
-                            }
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--  -->
-
-    <!-- Vertical Slider -->
-    <section>
-        <div class="container-fuild">
-            <div class="row">
-                <div class="col-12">
-                    <div class="Slide_wrp">
-                        <div class="slides">
-                            @{
-                                foreach (ContentModels.VirticalSlide item in virticalslides.Children())
-                                {
-                                    <div class="slide" style="background-image: url(@item.VerticalSlideImage.Url());">
-                                        <div class="caption_style">
-                                            <h1>@item.VerticalSlideTitle</h1>
-                                            <h2>@item.VerticalSlideDescription</h2>
-                                            <div class="slide_btn">
-                                                <a href="#" tabindex="0"> Know More <i class="fa fa-long-arrow-right"></i> </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--  -->
-
-    <section class="Bucket_list_style">
-        <div class="container-fluid">
-            <div class="row animatedParent">
-                <div class="col-12 NoPadMar">
+<section class="banner_style" style="background-image: url(@Model.HomeBanner.Url()); margin-bottom: 0px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="banner_container">
                     <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="sec_heading">
-                                    <h1>@bucketList.BucketListMainTitle</h1>
+                        <h1><span> @Model.WelcomeNotes </span> @Model.Title</h1>
+                        <div class="highlight">@Model.SubTitle</div>
+                        <p>@Model.Description</p>
+                        <a data-fancybox data-small-btn="true" class="btnFillup liquidbg"
+                            href="@Model.Link.Url">
+                            Watch Video
+                            <div class="icon"></div>
+                        </a>
+                        <!--  -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--  -->
+
+<section class="lot_more_style mb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>@Model.TitleSA <span> @Model.SubTitleSA </span></h1>
+            </div>
+        </div>
+        <div class="row animatedParent">
+            <div class="col-md-4 col-12 left_content_wrp animated fadeInUpShort">
+                @Model.DescriptionSA
+            </div>
+            <div class="col-md-7 offset-md-1 col-12 right_slider_wrp animated fadeInRightShort">
+                <div class="Home_offer_slider">
+                    @foreach (ContentModels.Dynamic item in dynamicList)
+                    {
+                        <div class="slide">
+                            <div class="image_style">
+                                <div class="caption">
+                                    <h3>@item.Title</h3>
+                                    <h5>@item.Description</h5>
                                 </div>
+                                <img src="@item.BackroundImage.Url()" class="image" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--  -->
+
+<!-- Vertical Slider -->
+
+        <section>
+            <div class="container-fuild">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="Slide_wrp">
+                            <div class="slides">
+								@foreach (ContentModels.Vertical item in verticalList)
+								{
+								    <div class="slide" style="background-image: url(@item.BackroundImage.Url());">
+                                    <div class="caption_style">
+                                        <h1>@item.Title</h1>
+                                        <h2>@item.Description</h2>
+                                        <div class="slide_btn">
+                                            <a href="@item.Link.Url" tabindex="0"> Know More <i class="fa fa-long-arrow-right"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>  
+								}
                             </div>
                         </div>
                     </div>
-                    <div class="Bucket_list animated fadeInRightShort">
-                        @{
-                            foreach (ContentModels.Slide item in bucketList.Children())
-                            {
+                </div>
+            </div>
+        </section>
+<!--Bucket List-->
+
+<section class="Bucket_list_style">
+    <div class="container-fluid">
+        <div class="row animatedParent">
+            <div class="col-12 NoPadMar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="sec_heading">
+                                <h1>Bucket list Hotspots</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="Bucket_list animated fadeInRightShort">
+							@foreach (ContentModels.BucketList item in bucketList)
+							{
+                            <div class="slide">
                                 <div class="thumbnail_style">
                                     <div class="static_text">
-                                        <h1>@item.SlideTitle</h1>
-                                        <h2>Kruger National Park</h2>
+                                        <h2>@item.Title</h2>
+                                        <h1>@item.SubTitle</h1>
                                     </div>
-                                    <div class="static_text_bottom">
-                                        @item.SlideDescription
-                                    </div>
-                                    <img src=@item.SlideImage.Url() />
+                                    <div class="static_text_bottom">@item.Description</div>
+                                    <img src="@item.BackgroundImage.Url()" />
                                     <div class="content_thumb">
                                         <div class="hover_content">
                                             <div class="sec_wrp">
                                                 <div class="title">Best time to visit</div>
-                                                <div class="month">May – September</div>
-                                                <p>The Bush thins out in the dry winter months, making it easier to spot
-                                                    wildlife.</p>
-                                                <!--  -->
+                                                <div class="month">@item.BestTimeToVisit</div>
+                                            </div>
+                                            <!--  -->
                                             <div class="sec_wrp">
-                                                    <div class="title">Known for</div>
-                                                    <p>Being the first and largest national park in South Africa. Also, home
-                                                        to
-                                                        the Big 5</p>
-                                                </div>
-                                                <!--  -->
+                                                <div class="title">Known for</div>
+                                                <p>@item.KnownFor</p>
+                                            </div>
+                                            <!--  -->
                                             <div class="sec_wrp" style="border: 0px;">
-                                                    <div class="title">Budget</div>
-                                                    <p>
-                                                        <i class="fa fa-inr" aria-hidden="true"></i>
-                                                        <i class="fa fa-inr" aria-hidden="true"></i>
-                                                        <i class="fa fa-inr" aria-hidden="true"></i>
-                                                        <i class="fa fa-inr" aria-hidden="true"></i>
-                                                    </p>
-                                                </div>
+                                                <div class="title">Budget</div>
+                                                <p>
+													@item.Budget
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                            }
-                        }
-                    </div>
-
-                </div>
-    </section>
-    <section class="touchdown_style mb-0">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="sec_heading white_text">
-                        <h1>Touchdown!</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 Left_bar">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="image_effect">
-                                <figure class="effect-ruby">
-                                    <img src="@Model?.SlideImage.Url()" />
-                                    <figcaption>
-                                        <h2>@Model?.SlideTitle<span> @Model?.SlideDescription</span></h2>
-
-                                        <div class="hidden">
-                                            <div class="button">
-                                                <a href="https://www.google.co.in/">
-                                                    <i class="fa fa-long-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </figcaption>
-                                </figure>
                             </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="image_effect">
-                                <figure class="effect-ruby">
-                                    <img src="assets/images/touchdown_img_02.jpg" />
-                                    <figcaption>
-                                        <h2>INTERNATIONAL TRAVEL UPDATES <span> Everything you need to know. </span>
-                                        </h2>
-                                        <div class="hidden">
-                                            <div class="button">
-                                                <a href="#"> <i class="fa fa-long-arrow-right"></i> </a>
-                                            </div>
-                                        </div>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        </div>
+							}
                     </div>
                 </div>
-                <!--  -->
-                <div class="col-md-8 Right_bar">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="image_effect">
-                                <figure class="effect-ruby">
-                                    <img src="assets/images/touchdown_img_05.jpg" />
-                                    <figcaption>
-                                        <h2>INTERNATIONAL TRAVEL UPDATES <span> Everything you need to know. </span>
-                                        </h2>
-                                        <div class="hidden">
-                                            <div class="button">
-                                                <a href="#"> <i class="fa fa-long-arrow-right"></i> </a>
-                                            </div>
-                                        </div>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="image_effect">
-                                        <figure class="effect-ruby">
-                                            <img src="assets/images/touchdown_img_03.jpg" />
-                                            <figcaption>
-                                                <h2>
-                                                    GETTING HERE
-                                                    <span>
-                                                        Flights to South Africa: <br />
-                                                        Fly into the Rainbow Nation on great deals.
-                                                    </span>
-                                                </h2>
-                                                <div class="hidden">
-                                                    <div class="button">
-                                                        <a href="#"> <i class="fa fa-long-arrow-right"></i> </a>
-                                                    </div>
-                                                </div>
-                                            </figcaption>
-                                        </figure>
-                                    </div>
-                                </div>
-
-                                <!--  -->
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="image_effect">
-                                        <figure class="effect-ruby">
-                                            <img src="assets/images/touchdown_img_04.jpg" />
-                                            <figcaption>
-                                                <h2>GETTING AROUND <span> Discover South Africa by road, train or air.
-                                                    </span></h2>
-                                                <div class="hidden">
-                                                    <div class="button">
-                                                        <a href="#"> <i class="fa fa-long-arrow-right"></i> </a>
-                                                    </div>
-                                                </div>
-                                            </figcaption>
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Map Start -->
-
-    <section class="home_map_style NoPadMar animatedParent">
-        <div class="container-fluid NoPadMar scroll animated fadeInUpShort">
-            <div class="centered-cover">
-                <h1>Discover South Africa</h1>
-                <div class="flex-break">
-                    <select class="form">
-                        <option value="Active-Adventure"> Active Adventure </option>
-                        <option value="Wildlife-Safari"> Wildlife Safari </option>
-                        <option value="cultural-Roots"> Cultural Roots </option>
-                        <option value="City-Lifestyle"> City Lifestyle </option>
-                        <option value="Coastal-Life"> Coastal Life </option>
-                    </select>
-                    <!-- Active-Adventure Start -->
-                    <div class="box Active-Adventure">
-                        <ul class="map_points">
-                            <li class="Northern_Cape">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_Northern_Cape.png" />
-                                </div>
-                                Northern Cape
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="Western_Cape">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_Western_Cape.png" />
-                                </div>
-                                Western Cape
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="Limpopo">
-                                <div class="img_div">
-                                    <img src="assets/images/LIMPOPO.png" />
-                                </div>
-                                Limpopo
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="Gauteng">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_Gauteng.png" />
-                                </div>
-                                Gauteng
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="Mpumalanga">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_Mpumalanga.png" />
-                                </div>
-                                Mpumalanga
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="KwaZul_Natal">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_KwaZul_Natal.png" />
-                                </div>
-                                KwaZul Natal
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="Free_State">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_Free_State.png" />
-                                </div>
-                                Free State
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="Eastern_Cape">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_Eastern_Cape.png" />
-                                </div>
-                                Eastern Cape
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="North_West">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_North_West.png" />
-                                </div>
-                                North West
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Wildlife Safari Start -->
-                    <div class="box Wildlife-Safari">
-                        <ul class="map_points">
-                            <li class="Bungee_Jumping">
-                                Bungee Jumping
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="Limpopo">
-                                <div class="img_div">
-                                    <img src="assets/images/LIMPOPO.png" />
-                                </div>
-                                Limpopo
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="Mpumalanga">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_Mpumalanga.png" />
-                                </div>
-                                Mpumalanga
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="KwaZul_Natal">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_KwaZul_Natal.png" />
-                                </div>
-                                KwaZul Natal
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="Free_State">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_Free_State.png" />
-                                </div>
-                                Free State
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="Eastern_Cape">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_Eastern_Cape.png" />
-                                </div>
-                                Eastern Cape
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="North_West">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_North_West.png" />
-                                </div>
-                                North West
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- cultural-Roots Start -->
-                    <div class="box cultural-Roots">
-                        <ul class="map_points">
-                            <li class="Northern_Cape">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_Northern_Cape.png" />
-                                </div>
-                                Northern Cape
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="Western_Cape">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_Western_Cape.png" />
-                                </div>
-                                Western Cape
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="Limpopo">
-                                <div class="img_div">
-                                    <img src="assets/images/LIMPOPO.png" />
-                                </div>
-                                Limpopo
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="Mpumalanga">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_Mpumalanga.png" />
-                                </div>
-                                Mpumalanga
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="KwaZul_Natal">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_KwaZul_Natal.png" />
-                                </div>
-                                KwaZul Natal
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="Free_State">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_Free_State.png" />
-                                </div>
-                                Free State
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="Eastern_Cape">
-                                <div class="img_div">
-                                    <img src="assets/images/icon_Eastern_Cape.png" />
-                                </div>
-                                Eastern Cape
-                                <a data-fancybox data-src="#Bungee_Jumping" href="javascript:;">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <img src="assets/images/map.jpg" />
-        </div>
-    </section>
-    <!-- Map Start -->
-    <section class="offers_promotions NoPaMa">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="text">@running.RunningSlideListTitle</div>
-                    <div class="sign_up">
-                        <a href="#">
-                            <i class="fa fa-long-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-
-        <marquee id="MarqueeFooterId" class="footertext" onload="this.start();" onmouseover="this.stop();"
-            onmouseout="this.start();" truespeed="" scrollamount="1" scrolldelay="20" direction="left" loop="repeat">
-            @{
-                foreach (ContentModels.RunningSlide item in running.Children())
-                {
-                    <span> @item.MessageBox</span>
-                }
-            }
-        </marquee>
-
-    </section>
-    <!-- Footer Start -->
-    <!-- Footer End -->
-    <!-- Page Scroll bar -->
-    <div class="scrollbar">
-        <div class="scrollball">
-            <span></span>
-        </div>
-    </div>
-    <!-- Page Scroll bar -->
-    <!-- jquery file -->
-
-    <script src="assets/js/jquery.js"></script>
-
-    <!-- bootstrap js file -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/menu.js"></script>
-    <script src="assets/js/fancybox.js"></script>
-    <script src="assets/js/slick.min.js"></script>
-    <script src="assets/js/css3-animate-it.js"></script>
-
-    <script src="assets/js/vertical-slide.js"></script>
-
-    <script src="assets/js/scripts.js"></script>
-
-    <!-- MAP POPUP START -->
-    <div style="display: none;" id="Bungee_Jumping" class="map_popup_style">
-        <div class="video_wrp">
-            <video width="100%" height="100%" controls id="myVideo">
-                <source src="https://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.mp4" type="video/mp4" />
-                <source src="https://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.webm" type="video/webm" />
-                <source src="https://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.ogv" type="video/ogg" />
-            </video>
-        </div>
-        <div class="content_wrp">
-            <div class="icon_wrp">
-                <img src="assets/images/activity_icon_bungee_jumping.png" />
-            </div>
-            <h2>Eastern Cape</h2>
-            <h1>Bungee Jumping</h1>
-            <p>A guaranteed rush of adrenaline as you dive head-first into this adventure!</p>
-        </div>
-    </div>
-    <div class="itinerary_style">
-        <div class="itinerary">
-            <div class="imageBox imageBefore">
-                <a href="#">
-                    <img src="assets/images/itinerary_img.png" title="Itinerary" />
-                </a>
-            </div>
-            <div class="imageBox imageAfter">
-                <a href="#">
-                    <img src="assets/images/itinerary_img_hover.png" title="Itinerary" />
-                    <span>Itineraries </span>
-                </a>
             </div>
         </div>
     </div>
-    <footer class="footer-wrapper" id="footer">
-        <div class="footer-content overlay">
-            <div class="container">
+</section>
+<!--Touch Down-->
+
+<section class="touchdown_style mb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="sec_heading white_text">
+                    <h1>Touchdown!</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 Left_bar">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-title">Popular destinations</div>
-                        <a href="#" class="footer-item"> Kruger National Park </a>
-                        <a href="#" class="footer-item"> Apartheid Museum </a>
-                        <a href="#" class="footer-item"> West Coast National Park </a>
-                        <a href="#" class="footer-item"> Coffee Bay </a>
-                        <a href="#" class="footer-item"> Augrabies Falls </a>
-                        <a href="#" class="footer-item"> Madikwe Game Reserve </a>
-                        <a href="#" class="footer-item"> Oribi Gorge </a>
-                        <a href="#" class="footer-item"> Bourke’s Luck Potholes </a>
-                        <a href="#" class="footer-item"> Golden Gate Highlands National Park </a>
-                        <a href="#" class="footer-item"> God’s Window </a>
-                    </div>
-                    <!--  -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-title">Things to do</div>
-                        <a href="#" class="footer-item"> Active Adventure </a>
-                        <a href="#" class="footer-item"> Wildlife Safari </a>
-                        <a href="#" class="footer-item"> Coastal Beach </a>
-                        <a href="#" class="footer-item"> Cultural Roots </a>
-                        <a href="#" class="footer-item"> Scenic Outdoors </a>
-                        <a href="#" class="footer-item"> City Lifestyle </a>
-                    </div>
-                    <!--  -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-title">Plan your trip</div>
-                        <a href="#" class="footer-item"> Itineraries </a>
-                        <a href="#" class="footer-item"> Visa & Immigration</a>
-                        <a href="#" class="footer-item"> COVID-19 Travel Updates </a>
-                        <a href="#" class="footer-item"> When to Visit</a>
-                        <a href="#" class="footer-item"> Getting Here: Flights to South Africa </a>
-                        <a href="#" class="footer-item"> Getting Around</a>
-                    </div>
-                    <!--  -->
+                    <div class="col-md-12">
+                        <div class="image_effect">
+                            <figure class="effect-ruby">
+                                <img src="@Model?.ImageTd1.Url()" />
+                                <figcaption>
+                                    <h2>@Model?.TitleTd1<span> @Model?.DescriptionTd1
+                                        </span></h2>
 
-                    <div class="col-lg-3 col-md-6 mt-md-5">
-                        <a href="#" class="footer-item"> South Africa: Revealed </a>
-                        <a href="#" class="footer-item"> More & More </a>
-                        <a href="#" class="footer-item"> Travel Trade </a>
-                        <a href="#" class="footer-item"> Partners </a>
-                        <a href="#" class="footer-item"> Facts </a>
-                        <a href="#" class="footer-item"> Blog </a>
-                        <a href="#" class="footer-item"> Newsroom </a>
-                        <a href="#" class="footer-item"> Contact Us </a>
+                                        
+
+                                    <div class="hidden">
+                                        <div class="button">
+                                            <a href="@Model?.LinkTd1.Url">
+                                                <i class="fa fa-long-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
                     </div>
-                    <!--  -->
-                    <div class="copy-right">
-                        <div class="footer_logo">
-                            <img src="assets/images/Logo.png" />
+
+                    <div class="col-md-12">
+                        <div class="image_effect">
+                            <figure class="effect-ruby">
+                                <img src="@Model?.ImageTd2?.Url()" />
+                                <figcaption>
+                                    <h2>@Model?.TitleTd2<span> @Model?.DescriptionTd2</span></h2>
+                                    <div class="hidden">
+                                        <div class="button">
+                                            <a href="@Model?.LinkTd2.Url"> <i class="fa fa-long-arrow-right"></i> </a>
+                                        </div>
+                                    </div>
+                                </figcaption>
+                            </figure>
                         </div>
-                        <div class="social-links">
-                            <div class="socila-icons">
-                                <a href="#">
-                                    <i class="fa fa-instagram"></i>
-                                </a>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+            <div class="col-md-8 Right_bar">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="image_effect">
+                            <figure class="effect-ruby">
+                                <img src="@Model?.ImageTd3.Url()" />
+                                <figcaption>
+                                    <h2>@Model?.TitleTd3<span> @Model?.DescriptionTd3 </span></h2>
+                                    <div class="hidden">
+                                        <div class="button">
+                                            <a href="@Model?.LinkTd3.Url"> <i class="fa fa-long-arrow-right"></i> </a>
+                                        </div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-md-6 col-xs-12">
+                                <div class="image_effect">
+                                    <figure class="effect-ruby">
+                                        <img src="@Model?.ImageTd4?.Url()" />
+                                        <figcaption>
+                                            <h2>
+                                                @Model?.TitleTd4
+                                                <span>
+                                                    @Model?.DescriptionTd4
+                                                </span>
+                                            </h2>
+                                            <div class="hidden">
+                                                <div class="button">
+                                                    <a href="@Model?.LinkTd4.Url"> <i class="fa fa-long-arrow-right"></i> </a>
+                                                </div>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </div>
                             </div>
-                            <div class="socila-icons">
-                                <a href="#">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                            </div>
-                            <div class="socila-icons">
-                                <a href="#">
-                                    <i class="fa fa-youtube"></i>
-                                </a>
-                            </div>
-                            <div class="socila-icons">
-                                <a href="#">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
+
+                            <!--  -->
+                            <div class="col-md-6 col-xs-12">
+                                <div class="image_effect">
+                                    <figure class="effect-ruby">
+                                        <img src="@Model?.ImageTd5?.Url()" />
+                                        <figcaption>
+                                            <h2>@Model?.TitleTd5<span> @Model?.DescriptionTd5
+                                                </span></h2>
+                                            <div class="hidden">
+                                                <div class="button">
+                                                    <a href="@Model?.LinkTd5.Url"> <i class="fa fa-long-arrow-right"></i> </a>
+                                                </div>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </div>
                             </div>
                         </div>
-                        © 2022. South African Tourism. All Rights Reserved. <a href="#"> Disclaimer </a> &nbsp; <a
-                            href="#"> Privacy Policy </a>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
-</body>
+    </div>
+</section>
+<!-- Map Start -->
 
-</html>
+<section class="home_map_style NoPadMar animatedParent">
+    <div class="container-fluid NoPadMar scroll animated fadeInUpShort">
+        <div class="centered-cover">
+            <h1>Discover South Africa</h1>
+            <div class="flex-break">
+                <select class="form">
+                    @foreach (var item in @Model?.DropDown)
+                    {
+                        string[] split = @item.City.Split(null);
+                        value =  $"{split[0]}-{split[1]}";                        
+                        <option value= "@value" class="active"> @item?.City </option>
+                    }
+                </select>
+                <!-- Active-Adventure Start -->
+                @foreach(var item in @Model?.DropDown)
+                {
+                    string[] split = @item?.City.Split(null);
+                    value =  $"{split[0]}-{split[1]}";                        
+
+                    <div class="box @value">
+                        <ul class="map_points">
+                            @foreach (var northernCape in @item?.NorthernCape)
+                            {
+                                if(northernCape.ShowHide == true)
+                                { 
+                                    <li class="Northern_Cape">
+                                        <div class="img_div">
+                                            <img src="@northernCape?.Icon.Url()" />
+                                        </div>
+                                            @northernCape?.Title
+                                        <a data-fancybox data-src="#Bungee_Jumping1" href="javascript:;">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                        <div style="display: none;" id="Bungee_Jumping1" class="map_popup_style">
+                                            <div class="video_wrp">
+                                                <img width="400px" height="220px" controls id="image" src="@northernCape?.PopUpImage.Url()" type="jpg/png" />
+                                            </div>
+                                            <div class="content_wrp">
+                                                <div class="icon_wrp">
+                                                    <img src="@northernCape?.PopUpLogo.Url()" />
+                                                </div>
+                                                <h2>@northernCape?.Location</h2>
+                                                <h1>@northernCape?.Activity</h1>
+                                                <p>@northernCape?.ActivityDescription</p>
+                                            </div>
+                                        </div>
+
+                                }
+                            }
+                            @foreach (var westernCape in @item?.WesternCape)
+                            {
+                                if(westernCape.ShowHide == true)
+                                { 
+                                    <li class="Western_Cape">
+                                        <div class="img_div">
+                                            <img src="@westernCape?.Icon.Url()" />
+                                        </div>
+                                            @westernCape?.Title
+                                        <a data-fancybox data-src="#Bungee_Jumping2" href="javascript:;">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                        <div style="display: none;" id="Bungee_Jumping2" class="map_popup_style">
+                                            <div class="video_wrp">
+                                                <img width="400px" height="220px" controls id="image" src="@westernCape?.PopUpImage.Url()" type="jpg/png" />
+                                            </div>
+                                            <div class="content_wrp">
+                                                <div class="icon_wrp">
+                                                    <img src="@westernCape?.PopUpLogo.Url()" />
+                                                </div>
+                                                <h2>@westernCape?.Location</h2>
+                                                <h1>@westernCape?.Activity</h1>
+                                                <p>@westernCape?.ActivityDescription</p>
+                                            </div>
+                                        </div>
+                                }
+                            }
+                            @foreach (var limpopo in @item?.Limpopo)
+                            {
+                                if(limpopo.ShowHide == true)
+                                { 
+                                    <li class="Limpopo">
+                                        <div class="img_div">
+                                            <img src="@limpopo?.Icon.Url()" />
+                                        </div>
+                                            @limpopo?.Title
+                                        <a data-fancybox data-src="#Bungee_Jumping3" href="javascript:;">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                        <div style="display: none;" id="Bungee_Jumping3" class="map_popup_style">
+                                            <div class="video_wrp">
+                                                <img width="400px" height="220px" controls id="image" src="@limpopo?.PopUpImage.Url()" type="jpg/png" />
+                                            </div>
+                                            <div class="content_wrp">
+                                                <div class="icon_wrp">
+                                                    <img src="@limpopo?.PopUpLogo.Url()" />
+                                                </div>
+                                                <h2>@limpopo?.Location</h2>
+                                                <h1>@limpopo?.Activity</h1>
+                                                <p>@limpopo?.ActivityDescription</p>
+                                            </div>
+                                        </div>
+                                }
+                            }
+                            @foreach (var gauteng in @item?.Gauteng)
+                            {
+                                if(gauteng.ShowHide == true)
+                                { 
+                                    <li class="Gauteng">
+                                        <div class="img_div">
+                                            <img src="@gauteng?.Icon.Url()" />
+                                        </div>
+                                            @gauteng?.Title
+                                        <a data-fancybox data-src="#Bungee_Jumping4" href="javascript:;">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                        <div style="display: none;" id="Bungee_Jumping4" class="map_popup_style">
+                                            <div class="video_wrp">
+                                                <img width="400px" height="220px" controls id="image" src="@gauteng?.PopUpImage.Url()" type="jpg/png" />
+                                            </div>
+                                            <div class="content_wrp">
+                                                <div class="icon_wrp">
+                                                    <img src="@gauteng?.PopUpLogo.Url()" />
+                                                </div>
+                                                <h2>@gauteng?.Location</h2>
+                                                <h1>@gauteng?.Activity</h1>
+                                                <p>@gauteng?.ActivityDescription</p>
+                                            </div>
+                                        </div>
+                                }
+                            }
+                            @foreach (var mpumalanga in @item?.Mpumalanga)
+                            {
+                                if(mpumalanga.ShowHide == true)
+                                { 
+                                    <li class="Mpumalanga">
+                                        <div class="img_div">
+                                            <img src="@mpumalanga?.Icon.Url()" />
+                                        </div>
+                                            @mpumalanga?.Title
+                                        <a data-fancybox data-src="#Bungee_Jumping5" href="javascript:;">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                        <div style="display: none;" id="Bungee_Jumping5" class="map_popup_style">
+                                            <div class="video_wrp">
+                                                <img width="400px" height="220px" controls id="image" src="@mpumalanga?.PopUpImage.Url()" type="jpg/png" />
+                                            </div>
+                                            <div class="content_wrp">
+                                                <div class="icon_wrp">
+                                                    <img src="@mpumalanga?.PopUpLogo.Url()" />
+                                                </div>
+                                                <h2>@mpumalanga?.Location</h2>
+                                                <h1>@mpumalanga?.Activity</h1>
+                                                <p>@mpumalanga?.ActivityDescription</p>
+                                            </div>
+                                        </div>
+                                }
+                            }
+                            @foreach (var kwazulNatal in @item?.KwazulNatal)
+                            {
+                                if(kwazulNatal.ShowHide == true)
+                                { 
+                                    <li class="KwaZul_Natal">
+                                        <div class="img_div">
+                                            <img src="@kwazulNatal?.Icon.Url()" />
+                                        </div>
+                                            @kwazulNatal?.Title
+                                        <a data-fancybox data-src="#Bungee_Jumping6" href="javascript:;">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                        <div style="display: none;" id="Bungee_Jumping6" class="map_popup_style">
+                                            <div class="video_wrp">
+                                                <img width="400px" height="220px" controls id="image" src="@kwazulNatal?.PopUpImage.Url()" type="jpg/png" />
+                                            </div>
+                                            <div class="content_wrp">
+                                                <div class="icon_wrp">
+                                                    <img src="@kwazulNatal?.PopUpLogo.Url()" />
+                                                </div>
+                                                <h2>@kwazulNatal?.Location</h2>
+                                                <h1>@kwazulNatal?.Activity</h1>
+                                                <p>@kwazulNatal?.ActivityDescription</p>
+                                            </div>
+                                        </div>
+                                }
+                            }
+                            @foreach (var freeState in @item?.FreeState)
+                            {
+                                if(freeState?.ShowHide == true)
+                                {
+                                    <li class="Free_State">
+                                        <div class="img_div">
+                                            <img src="@freeState?.Icon.Url()" />
+                                        </div>
+                                            @freeState?.Title
+                                        <a data-fancybox data-src="#Bungee_Jumping7" href="javascript:;">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                        <div style="display: none;" id="Bungee_Jumping7" class="map_popup_style">
+                                            <div class="video_wrp">
+                                                <img width="400px" height="220px" controls id="image" src="@freeState?.PopUpImage.Url()" type="jpg/png" />
+                                            </div>
+                                            <div class="content_wrp">
+                                                <div class="icon_wrp">
+                                                    <img src="@freeState?.PopUpLogo.Url()" />
+                                                </div>
+                                                <h2>@freeState?.Location</h2>
+                                                <h1>@freeState?.Activity</h1>
+                                                <p>@freeState?.ActivityDescription</p>
+                                            </div>
+                                        </div>
+                                }
+                            }
+                            @foreach (var easternCape in @item?.EasternCape)
+                            {
+                                if(easternCape.ShowHide == true)
+                                {
+                                    <li class="Eastern_Cape">
+                                        <div class="img_div">
+                                            <img src="@easternCape?.Icon.Url()" />
+                                        </div>
+                                            @easternCape?.Title
+                                        <a data-fancybox data-src="#Bungee_Jumping8" href="javascript:;">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                        <div style="display: none;" id="Bungee_Jumping8" class="map_popup_style">
+                                            <div class="video_wrp">
+                                                <img width="400px" height="220px" controls id="image" src="@easternCape?.PopUpImage.Url()" type="jpg/png" />
+                                            </div>
+                                            <div class="content_wrp">
+                                                <div class="icon_wrp">
+                                                    <img src="@easternCape?.PopUpLogo.Url()" />
+                                                </div>
+                                                <h2>@easternCape?.Location</h2>
+                                                <h1>@easternCape?.Activity</h1>
+                                                <p>@easternCape?.ActivityDescription</p>
+                                            </div>
+                                        </div>
+                                }
+                            }
+                            @foreach (var northWest in @item?.NorthWest)
+                            {
+                                if(northWest.ShowHide == true)
+                                {
+                                    <li class="North_West">
+                                        <div class="img_div">
+                                            <img src="@northWest.Icon.Url()" />
+                                        </div>
+                                            @northWest?.Title
+                                        <a data-fancybox data-src="#Bungee_Jumping9" href="javascript:;">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                        <div style="display: none;" id="Bungee_Jumping9" class="map_popup_style">
+                                            <div class="video_wrp">
+                                                <img width="400px" height="220px" controls id="image" src="@northWest?.PopUpImage.Url()" type="jpg/png" />
+                                            </div>
+                                            <div class="content_wrp">
+                                                <div class="icon_wrp">
+                                                    <img src="@northWest?.PopUpLogo.Url()" />
+                                                </div>
+                                                <h2>@northWest?.Location</h2>
+                                                <h1>@northWest?.Activity</h1>
+                                                <p>@northWest?.ActivityDescription</p>
+                                            </div>
+                                        </div>
+                                }
+                            }
+                            @foreach (var bungeeJumping in @item?.BungeeJumping)
+                            {
+                                if(bungeeJumping.ShowHide == true)
+                                {
+                                    <li class="Bungee_Jumping">
+                                            @bungeeJumping?.Title
+                                        <a data-fancybox data-src="#Bungee_Jumping10" href="javascript:;">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                        <div style="display: none;" id="Bungee_Jumping10" class="map_popup_style">
+                                            <div class="video_wrp">
+                                                <img width="400px" height="220px" controls id="image" src="@bungeeJumping?.PopUpImage.Url()" type="jpg/png" />
+                                            </div>
+                                            <div class="content_wrp">
+                                                <div class="icon_wrp">
+                                                    <img src="@bungeeJumping?.PopUpLogo.Url()" />
+                                                </div>
+                                                <h2>@bungeeJumping?.Location</h2>
+                                                <h1>@bungeeJumping?.Activity</h1>
+                                                <p>@bungeeJumping?.ActivityDescription</p>
+                                            </div>
+                                        </div>
+                                }
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+        <img src="assets/images/map.jpg" />
+    </div>
+</section>

@@ -473,3 +473,18 @@ $('select').change(function() { //on change do stuff
 
 
  
+
+ 
+//  Isotope
+var $grid = $( '#grid' ).imagesLoaded( function() {
+  // init Isotope after all images have loaded
+  $grid.isotope( {
+    itemSelector: '.grid-item',
+    getSortData: {
+      date: '.date',
+      colors: '.colors',
+      facing: '.facing'
+    }
+  } );
+} );
+

@@ -1,0 +1,217 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits UmbracoViewPage
+@{
+    Layout = null;
+    var homepage = (ContentModels.Home)Model.Root();
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link rel="icon" type="image/x-icon" href="~/assets/images/favicon.ico" />
+
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+        <!-- bootstrap css file -->
+        <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+        <!-- all.min.css file -->
+        <link rel="stylesheet" href="~/assets/css/all.min.css" />
+        <!-- font-awesome css file -->
+
+        <!-- style.css file -->
+        <link rel="stylesheet" href="~/assets/css/mystyle.css" />
+        <link rel="stylesheet" href="~/assets/css/media_query.css" />
+        <link rel="stylesheet" href="~/assets/css/menu.css" />
+        <link rel="stylesheet" href="~/assets/css/fancybox.css" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link href="~/assets/css/slick.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="~/assets/css/animations.css" type="text/css" />
+
+        <link rel="stylesheet" href="~/assets/css/vertical-slide.css" type="text/css" />
+        <link rel="stylesheet" href="~/assets/css/newsroom_slide.css" />
+
+        <title>South Africa</title>
+    </head>
+
+    <body>
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="main-header" id="master-id">
+                            <div class="menu_wrp">
+                                <input type="checkbox" class="menu-btn" id="menu-btn" />
+                                <label for="menu-btn" class="menu-icon">
+                                    <span class="menu-icon__line"></span>
+                                </label>
+
+                                <ul class="nav-links">
+                                    @foreach (var link in homepage.NavLinks)
+                                    {
+                                        <li class="nav-link">
+                                            <a href="@link.Url"> @link.Name </a>
+                                        </li>
+                                    }
+                                </ul>
+
+                                <div class="search_icon">
+                                    <a data-fancybox data-src="#trueModal" href="javascript:;"> <i class="fa fa-search"
+                                            aria-hidden="true"></i> </a>
+                                </div>
+
+                                <div class="search_popup" style="display: none;" id="trueModal">
+                                    <form class="search-container">
+                                        <input type="text" id="search-bar" placeholder="Search..." />
+                                        <a href="#">
+                                            <div class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></div>
+                                        </a>
+                                    </form>
+                                </div>
+
+                                <!--  -->
+                            </div>
+                            <div class="logo">
+                                <a href="@homepage.LogoLink.Url">
+                                    <img src="@homepage.Logo.Url()" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        @RenderBody()
+        <section class="offers_promotions NoPaMa">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text">@homepage?.PromotionsTitle</div>
+                        <div class="sign_up">
+                            <a href="@homepage?.OfferLink.Url">
+                                <i class="fa fa-long-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <marquee id="MarqueeFooterId" class="footertext" onload="this.start();" onmouseover="this.stop();"
+                onmouseout="this.start();" truespeed="" scrollamount="1" scrolldelay="20" direction="left" loop="repeat">
+                @foreach (var item in @homepage.Offers.ToList())
+                {
+                    <span> @item</span>
+                }
+            </marquee>
+            <div class="clearfix"></div>
+        </section>
+        <footer class="footer-wrapper" id="footer">
+            <div class="footer-content overlay">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer-title">Popular Destinations</div>
+                            @foreach (var item in @homepage.PopularDestinations)
+                            {
+                                <a href="@item.Link.Url" class="footer-item"> @item.Title</a>
+                            }
+                        </div>
+                        <!--  -->
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer-title">Things to do</div>
+                            @foreach (var item in @homepage.ThinksToDo)
+                            {
+                                <a href="@item.Link.Url" class="footer-item">@item.Title</a>
+                            }
+                        </div>
+                        <!--  -->
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer-title">Plan your trip</div>
+                            @foreach (var item in @homepage.PlanYourTrip)
+                            {
+                                <a href="@item.Link.Url" class="footer-item"> @item.Title </a>
+                            }
+                        </div>
+                        <!--  -->
+
+                        <div class="col-lg-3 col-md-6 mt-md-5">
+                            @foreach (var item in @homepage.OtherLinks)
+                            {
+                                <a href="@item.Link.Url" class="footer-item"> @item.Title</a>
+                            }
+                        </div>
+                        <!--  -->
+                        <div class="copy-right">
+                            <div class="footer_logo">
+                                <img src="@homepage.FooterLogo.Url()" />
+                            </div>
+                            <div class="social-links">
+                                <div class="socila-icons">
+                                    <a href="@homepage.InstagramLink.Url">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </div>
+                                <div class="socila-icons">
+                                    <a href="@homepage.FacebookLink.Url">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </div>
+                                <div class="socila-icons">
+                                    <a href="@homepage.YoutubeLink.Url">
+                                        <i class="fa fa-youtube"></i>
+                                    </a>
+                                </div>
+                                <div class="socila-icons">
+                                    <a href="@homepage.TwitterLink.Url">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            @homepage.Copyright<a href="@homepage.DisclaimerLink.Url"> @homepage.Disclaimer </a> &nbsp; <a
+                                href="@homepage.PrivacyPolicyLink.Url"> @homepage.PrivacyPolicy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="scrollbar">
+            <div class="scrollball">
+                <span></span>
+            </div>
+        </div>
+        <!-- Page Scroll bar -->
+        <!-- jquery file -->
+
+        <script src="~/assets/js/jquery.js"></script>
+        <script src='https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js'></script>
+        <script src='https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js'></script>
+
+        <!-- bootstrap js file -->
+        <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="~/assets/js/menu.js"></script>
+        <script src="~/assets/js/fancybox.js"></script>
+        <script src="~/assets/js/slick.min.js"></script>
+        <script src="~/assets/js/css3-animate-it.js"></script>
+
+        <script src="~/assets/js/vertical-slide.js"></script>
+
+        <script src="~/assets/js/scripts.js"></script>
+        <script src="~/assets/js/newsroom_slide.js"></script>
+        <div class="itinerary_style">
+            <div class="itinerary">
+                <div class="imageBox imageBefore">
+                    <a href="@homepage?.ItinerariesLink.Url">
+                        <img src="@homepage.ItinerariesImage.Url()" title="Itinerary" />
+                    </a>
+                </div>
+                <div class="imageBox imageAfter">
+                    <a href="@homepage?.ItinerariesLink.Url">
+                        <img src="@homepage.ItinerariesHoverImage.Url()" title="Itinerary" />
+                        <span>@homepage.ItinerariesHeader </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

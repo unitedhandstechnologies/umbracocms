@@ -1,0 +1,193 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.NewsRoom>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+    var model = Model.Root();
+    var testimonial = model.Descendants<ContentModels.Testimonials>().Where(x => x.IsVisible());
+}
+
+        <section class="NoBanner">
+            <div class="container top_banner_news animatedParent">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="sec_heading">
+                            <h1>@Model?.MainTitle</h1>
+                        </div>
+
+                        <div class="news_list animated fadeInUpShort">
+                            <div class="news_img"><img src="@Model?.MainImage.Url()" /></div>
+                            <div class="news_content">
+                                <div class="date">@Model?.NewsroomDate.ToString("dd-MMM-yy")</div>
+                                <a href="@Model?.NewsroomLink.Url" target="_blank">
+                                    @Model?.NewsroomStory
+                                </a>
+                                <div class="publister"><a href="@Model?.NewspaperLink.Url" target="_blank"> India Outbound </a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  -->
+
+        <section>
+            <div class="container animatedParent">
+                <div class="row animated fadeInUpShort">
+                    <div class="col-md-6 left_news_style">
+                        @foreach(var leftPanel in Model.LeftPanelNews)
+                        {
+                        <div class="news_list">
+                            <div class="news_img"><img src="@leftPanel?.Image.Url()" /></div>
+
+                            <div class="news_content">
+                                <div class="date">@leftPanel?.NewsDate.ToString("dd-MMM-yy")</div>
+                                <a href="@leftPanel?.NewsStoryLink.Url" target="_blank">
+                                    @leftPanel?.NewsStory
+                                </a>
+                                <div class="publister">
+                                    <a href="@leftPanel?.NewsLink.Url" target="_blank"> @leftPanel?.NewsName </a>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+
+                    <div class="col-md-6 right_news_style">
+                        @foreach( var rightPanel in Model.RightPanelNews)
+                        {
+                        <div class="news_list">
+                            <div class="news_img">
+                                <a href="#"> <img src="@rightPanel?.Image.Url()" /> </a>
+                            </div>
+                            <div class="news_content">
+                                <div class="date">@rightPanel?.NewsDate.ToString("dd-MMM-yy")</div>
+                                <a href="@rightPanel?.NewsStoryLink.Url" target="">
+                                    @rightPanel?.NewsStory
+                                </a>
+                                <div class="publister">
+                                    <a href="@rightPanel?.NewsLink.Url" target=""> @rightPanel?.NewsName </a>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+            <!--  Media Stories Starts -->
+
+        <section>
+            <div class="container animatedParent">
+                <div class="row animated fadeInUpShort">
+                    <div class="col-12">
+                        <div class="sld-wrp">
+                            <div class="slider-nav">
+                            @foreach(var item in @Model.MediaStory)
+                            {
+                                <div class="slide-btn">@item.Year</div>
+                            }
+                            </div>
+
+                            <div class="slider-for">
+                            <!-- Year 2022 Starts -->
+                            @foreach(var item in @Model.MediaStory)
+                            {
+                                var dataNumber = byte.MinValue;
+                                var dataNumberMonth = byte.MinValue;
+
+                                <div class="slide-container">
+                                    <div class="container02">
+                                        <div class="selectSection">
+                                            @foreach(var data in @item.Month)
+                                            {
+                                                dataNumber = ++dataNumber;
+
+                                                if(dataNumber == 1)
+                                                {
+                                                    <button type="button" data-number="@dataNumber" class="active">@data.Month</button>
+                                                }
+                                                else
+                                                {
+                                                    <button type="button" data-number="@dataNumber">@data.Month</button> 
+                                                }
+                                            }
+                                        </div>
+
+                                        <h5>@Model.Title</h5>
+
+                                        <div class="contentSection">
+                                            @foreach(var data in @item.Month)
+                                            {
+                                                dataNumberMonth = ++dataNumberMonth;
+
+                                                <div class="content" data-number="@dataNumberMonth">
+                                                    @foreach(var storyContent in @data.StoryContent)
+                                                    {
+                                                        <div class="card">
+                                                            <div class="date">@storyContent.Calendar.ToString("dd-MMM-yy")</div>
+                                                            @storyContent.Story
+                                                            <div class="publister"><a href="@storyContent?.MediaLink?.Url"> @storyContent.MediaName </a></div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- Year 2022 End -->
+                            }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+            <!--  Media Stories End -->
+
+            <!--  -->
+
+        <section class="testimonials_style animatedParent mb-0">
+            <div class="container">
+                <div class="row animatedParent">
+                    <div class="col-12 NoPadMar">
+                        <div class="comma_icon"></div>
+                        <div class="comma_icon_02"></div>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="sec_heading white_text">
+                                        <h1>@Model?.TestimonialsTitle</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonials_slider animated fadeInRightShort">
+                            @foreach (ContentModels.Testimonials item in testimonial)
+                            {
+                                <div class="slide">
+                                <div class="content_wrp">
+                                    <p>@item.Content</p>
+
+                                    <div class="Name_style">@item.TestimonialName</div>
+                                    <div class="profession">@item.Designation</div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<script>
+    function addClass(){
+        document.getElementById("master-id").classList.add("black_text")
+       }
+       addClass()
+</script>
+

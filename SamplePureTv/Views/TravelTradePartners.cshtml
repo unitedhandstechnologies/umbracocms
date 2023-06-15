@@ -1,0 +1,241 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.TravelTradePartners>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+    var model = Model.Root();
+    var deallist = model.Descendants<ContentModels.Deals>().Where(x => x.IsVisible());
+    var partner1 = model.Descendants<ContentModels.Partner>().Where(x => x.IsVisible());
+    var partner2 = model.Descendants<ContentModels.Partner2>().Where(x => x.IsVisible());
+    var partner3 = model.Descendants<ContentModels.Partner3>().Where(x => x.IsVisible());
+    var partner4 = model.Descendants<ContentModels.Partner4>().Where(x => x.IsVisible());
+    var airlines = model.Descendants<ContentModels.AirlinePartners>().Where(x => x.IsVisible());
+}
+<section class="banner_style" style="margin-bottom: 0px; background-image: url(@Model?.BackgroundImage.Url()">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="banner_container">
+                    <div class="container">
+                        <h1><span> @Model?.Title</span> @Model.SubTitle</h1>
+
+                        <!--  -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--  -->
+
+<section class="deals_wrp">
+    <div class="container">
+        <div class="row animatedParent">
+            <div class="col-12 NoPadMar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="sec_heading white_text">
+                                <h1>Deals</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="deals_slide animated fadeInRightShort">
+                    @foreach (ContentModels.Deals item in deallist)
+                    {
+                        <div class="slide">
+                            <div class="thumbnail_style">
+                                <img src="@item.Image.Url()" />
+                            </div>
+
+                            <div class="content_wrp">
+                                <div class="text_wrp">
+                                    @item.Description
+                                </div>
+                                <div class="book_now_btn">
+                                    <a href="@item.Link.Url"> Book Now <i class="fa fa-long-arrow-right"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Thomas -->
+
+<section class="travel_trade_style animatedParent">
+    <div class="container-fluid">
+        <div class="row animatedParent">
+            <div class="col-12 NoPadMar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="sec_heading">
+                                <h1>@Model?.PartnersTitle</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="partners_wrp">
+                    <div class="container partner_logo"><img src="@Model?.Partner1TitleLogo.Url()" /></div>
+
+                    <div class="travel_trade animated fadeInRightShort">
+                        @foreach (var item in partner1)
+                        {
+                            <div class="slide">
+                                <div class="thumbnail_style"><img src="@item.Image.Url()" /></div>
+                                <div class="slide_content">
+                                    <div class="place_name">@item.PlaceName</div>
+                                    <div class="days_style">@item.DayOfCount</div>
+                                    <div class="book_now_btn">
+                                        <a href="@item.BookNowLink.Url"> Book Now <i class="fa fa-long-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SOTC Starts -->
+
+<section class="travel_trade_style animatedParent">
+    <div class="container-fluid">
+        <div class="row animatedParent">
+            <div class="col-12 NoPadMar">
+                <div class="partners_wrp partner_bg">
+                    <div class="container partner_logo"><img src="@Model?.Partner2TitleLogo.Url()" /></div>
+
+                    <div class="travel_trade animated fadeInRightShort">
+                        @foreach (var item in partner2)
+                        {     
+                        <div class="slide">
+                            <div class="thumbnail_style"><img src="@item.Image.Url()" /></div>
+                            <div class="slide_content">
+                                <div class="place_name">@item.PlaceName</div>
+                                <div class="days_style">@item.DaysToGo</div>
+                                <div class="book_now_btn">
+                                    <a href="@item.BookNowLink.Url"> Book Now <i class="fa fa-long-arrow-right"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Riya Travel Start  -->
+
+<section class="travel_trade_style animatedParent">
+    <div class="container-fluid">
+        <div class="row animatedParent">
+            <div class="col-12 NoPadMar">
+                <div class="partners_wrp">
+                    <div class="container partner_logo"><img src="@Model?.Partner3TitleLogo.Url()" /></div>
+
+                    <div class="travel_trade animated fadeInRightShort">
+                        @foreach (var item in partner3)
+                        {
+                            <div class="slide">
+                                <div class="thumbnail_style"><img src="@item.Image.Url()" /></div>
+                                <div class="slide_content">
+                                    <div class="place_name">@item.PlaceName</div>
+                                    <div class="days_style">@item.DaysToGo</div>
+                                    <div class="book_now_btn">
+                                        <a href="@item.BookNowLink.Url"> Book Now <i class="fa fa-long-arrow-right"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                        <!--  -->
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Akbar Travel Starts -->
+
+<section class="travel_trade_style animatedParent">
+    <div class="container-fluid">
+        <div class="row animatedParent">
+            <div class="col-12 NoPadMar">
+                <div class="partners_wrp partner_bg">
+                    <div class="container partner_logo"><img src="@Model?.Partner4TitleLogo.Url()" /></div>
+
+                    <div class="travel_trade animated fadeInRightShort">
+                        @foreach (var item in partner4)
+                        {
+
+                            <div class="slide">
+                                <div class="thumbnail_style"><img src="@item.Image.Url()" /></div>
+                                <div class="slide_content">
+                                    <div class="place_name">@item.PlaceName</div>
+                                    <div class="days_style">@item.DaysToGo</div>
+                                    <div class="book_now_btn">
+                                        <a href="@item.BookNowLink.Url"> Book Now <i class="fa fa-long-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--  -->
+
+<section class="animatedParent">
+    <div class="container">
+        <div class="row animatedParent">
+            <div class="col-12 NoPadMar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="sec_heading">
+                                <h1>@Model?.AirLinesTitle</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="airline_partners animated fadeInRightShort">
+                    @foreach (var item in airlines)
+                    {
+                        <div class="slide">
+                            <div class="thumbnail_style"><img src="@item.Logo.Url()" /></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

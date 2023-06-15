@@ -1,0 +1,48 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.BlogSafariPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+    var homepage = (ContentModels.Home)Model.Root();
+    var model = Model.Root();
+}
+
+<section class="NoBanner mb-3">
+    <div class="container top_banner_news animatedParent">
+        <div class="row">
+            <div class="col-12">
+                <div class="sec_heading">
+                    <h1> @Model?.BlogSafariTitle </h1>
+                    <div class="news_list animated fadeInUpShort">
+                        <div class="news_img"><img src="@Model?.BlogSafariImage.Url()" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<!--  -->
+
+<section class="mb-3">
+    <div class="container">
+        <div class="row">
+            <!-- <div class="col-12"> The 9 safaris to discover South Africa’s wild side   </div>   -->
+        </div>
+    </div>
+</section>
+
+<section class="blog_style">
+    <div class="container animatedParent">
+        <div class="row animated fadeInUpShort">
+            <div class="col-12">
+                @Model?.BlogSafariContent
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function addClass(){
+        document.getElementById("master-id").classList.add("black_text")
+       }
+       addClass()
+</script>

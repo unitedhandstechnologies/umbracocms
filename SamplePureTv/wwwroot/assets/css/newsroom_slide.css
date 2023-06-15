@@ -1,0 +1,207 @@
+
+ 
+
+.sld-wrp {
+  width: 100%;
+  margin: 0 auto;
+ 
+}
+
+
+.slider-nav { width:120px; margin: 0px auto; }
+
+.slider-for {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+
+
+
+.slide-container {
+  min-height: 300px;
+  height: auto;
+  /* background-color: #f7f7f7;
+  border: 1px solid #ccc; */
+}
+
+.slide-btn {
+  text-align: center;
+  /* box-sizing: border-box; */
+  padding: 0;
+  /* background-color: yellow; */
+  /* border: 1px solid #000; */
+  /* cursor: pointer; */
+  color: #0B3D9A;
+  font-size: 25px;
+  text-transform: uppercase;
+}
+
+.slide-btn:hover {
+  /* background-color: rgb(255, 179, 0); */
+}
+
+
+
+
+/*  */
+
+
+
+
+.container02 { text-align: center;
+}
+
+.container02 h5 { font-size: 60px; text-align: left;
+  text-transform: uppercase;
+  font-family: "amsipro-blackuploaded_file";  }
+
+
+  .selectSection {
+    margin-top: 10px;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #C9C9C9;
+}
+
+.selectSection button {
+ font-size: 16px;
+ background-color: unset;
+ /* background-color: rgba(209, 207, 207, 0.575); */
+ margin-left: 10px;
+ border: 0;
+ padding: 3px;
+ width: 60px;
+ height: 60px;
+ border-radius: 90px;
+ transition: all 0.2s ease;
+}
+.selectSection button:hover {
+  background-color: #FFCE00 !important;
+ cursor: pointer;
+ transition: all 0.3s ease;
+}
+
+.selectSection .active {
+ background-color: #FFCE00 !important;
+}
+
+ 
+
+
+
+
+
+/* hides every element except the first */
+.content:not(:first-child) {
+ display: none;
+}
+
+
+.contentSection {
+  margin-top: 30px;
+  text-align: initial;
+}
+
+.contentSection .content {
+
+}
+
+.contentSection .content .card {
+  width: 30%;
+  float: left;
+  margin-right: 5%;
+  background: unset;
+  /* border: unset; */
+  margin-bottom: 50px;
+  min-height: 120px;
+  border-radius:unset;
+  border: none;
+}
+
+
+.contentSection .content .card:nth-child(3n+0) {  
+  margin-right:inherit;
+ 
+}
+
+
+
+.contentSection .content .card .date { color: #909090; font-size: 13px; text-transform: uppercase; }
+.contentSection .content .card .publister { color: #0B3D9A; font-size: 18px; margin-top: 5px; }
+.contentSection .content .card .publister a { color: #0B3D9A;  font-size: 16px; text-decoration: none; }
+
+/*  */
+ 
+
+
+.slider-nav {  }
+ 
+.slider-nav .slick-slide  { margin: 0px; }
+
+.slider-nav .slick-custom-arrow-10 { font-weight: normal; position: absolute; opacity: 1; width: 50px; height: 50px; padding: inherit; width: 40px; text-align: center; color: #9aa8c0; border: solid 1px #CECECE; z-index: 1; height: 40px; display: block; border-radius: 90px; display: flex; justify-content: center; align-items: center; text-decoration: none; font-size: 20px; cursor: pointer; }
+.slider-nav .slick-custom-arrow-10:hover {   transition: all 0.2s ease; border: solid 1px #8e8e8e; color: #8e8e8e;  } 
+
+.slider-nav .slick-custom-arrow-left { left: -55px; top: 0px;  }
+.slider-nav .slick-custom-arrow-right { right: -55px;  top: 0px;  }
+
+
+
+
+
+
+
+/*  */
+
+ 
+.testimonials_style { }
+.testimonials_style .slick-slide { position: relative;  }
+.testimonials_slider { width:90%; margin: 0px auto; position: relative;   }
+.testimonials_style .slick-custom-arrow-20 { font-weight: normal; position: absolute; opacity: 1; width: 50px; height: 50px; padding: inherit; width: 40px; text-align: center; z-index: 1; height: 40px; display: block; border-radius: 90px; display: flex; justify-content: center; align-items: center; text-decoration: none; font-size: 20px; cursor: pointer; color: #3671DE; border: solid 1px #3671DE;  }
+.testimonials_style .slick-custom-arrow-20:hover { transition: all 0.2s ease; color: #fff; border: solid 1px #fff;   } 
+.testimonials_style .slick-custom-arrow-left { left: -45px; top: 45%; }
+.testimonials_style .slick-custom-arrow-right { right: -45px; top: 45%; }
+
+
+
+ 
+
+
+/*  */
+
+
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+
+.contentSection .content .card {
+  width: 100%;
+  margin-right: inherit;
+  background: unset;
+  margin-bottom: 30px;
+  min-height: inherit;
+  border-radius: unset;
+}
+
+
+
+.container02 h5 {
+  font-size: 30px;
+}
+
+
+.selectSection button {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+
+}
