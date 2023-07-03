@@ -346,14 +346,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Web.Common.PublishedModels.TitleLink> PlanYourTrip => this.Value<global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Web.Common.PublishedModels.TitleLink>>(_publishedValueFallback, "planYourTrip");
 
 		///<summary>
-		/// POPULAR DESTINATIONS
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("popularDestinations")]
-		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Web.Common.PublishedModels.TitleLink> PopularDestinations => this.Value<global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Web.Common.PublishedModels.TitleLink>>(_publishedValueFallback, "popularDestinations");
-
-		///<summary>
 		/// Privacy Policy
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
@@ -472,13 +464,5 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("welcomeNotes")]
 		public virtual string WelcomeNotes => this.Value<string>(_publishedValueFallback, "welcomeNotes");
-
-		///<summary>
-		/// Youtube Link
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("youtubeLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link YoutubeLink => this.Value<global::Umbraco.Cms.Core.Models.Link>(_publishedValueFallback, "youtubeLink");
 	}
 }

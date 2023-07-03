@@ -90,6 +90,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string GeographyTitle => this.Value<string>(_publishedValueFallback, "geographyTitle");
 
 		///<summary>
+		/// Indian Currency
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("indianCurrency")]
+		public virtual string IndianCurrency => this.Value<string>(_publishedValueFallback, "indianCurrency");
+
+		///<summary>
 		/// Rainbow Description
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
@@ -144,6 +152,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("seasonTitle")]
 		public virtual string SeasonTitle => this.Value<string>(_publishedValueFallback, "seasonTitle");
+
+		///<summary>
+		/// SouthAfrican Currency
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("southAfricanCurrency")]
+		public virtual string SouthAfricanCurrency => this.Value<string>(_publishedValueFallback, "southAfricanCurrency");
 
 		///<summary>
 		/// Tab1

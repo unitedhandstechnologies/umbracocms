@@ -7,7 +7,9 @@
 	var rainbownation = model.Descendants<ContentModels.Rainbow>().Where(x => x.IsVisible());
 	var tasteOfAdventure = model.Descendants<ContentModels.Adventure>().Where(x => x.IsVisible());
 	var seasons = model.Descendants<ContentModels.Season>().Where(x => x.IsVisible());
+	var date = DateTime.Now.ToString("dd-MMM, h:mm ") + DateTime.Now.ToString("tt").ToLower();
 }
+
 <section class="banner_style" style="margin-bottom: 0px; background-image:url(@Model?.RevealedImage.Url())">
 	<div class="container">
 		<div class="row">
@@ -134,25 +136,23 @@
 					</div>
 					<p>@Model?.CurrencyDescription</p>
 				</div>
-
 				<div class="Currency_right">
-					<div class="Rand_style">1 South African Rand equals</div>
-					<div class="INR_style">4.91 Indian Rupee</div>
-					<span> 12 Aug, 10:00 am UTC · Disclaimer </span>
+					<div class="Rand_style">@Model?.SouthAfricanCurrency</div>
+					<div class="INR_style">@Model?.IndianCurrency</div>
+					<span> @date <span>  UTC . Disclaimer</span> </span>
 
 					<div class="input_wrp_box">
-						<div class="input_style"><input type="text" placeholder="1" /></div>
+						<div class="input_style searchBox"><input type="text" placeholder="1" id="oamount"> </div>
 						<div class="right_map">South Africa Rand <img src="~/assets/images/south_africa.png" /></div>
 					</div>
 
 					<div class="input_wrp_box">
-						<div class="input_style"><input type="text" placeholder="4.91" /></div>
+						<div class="input_style finalValue"><input type="text" placeholder="4.91" /></div>
 						<div class="right_map">India <img src="~/assets/images/india.png" /></div>
 					</div>
 
-					<div class="clearfix"></div>
-
-					<button class="btn_style">Convert</button>
+						<div class="clearfix"></div>
+					<button type="submit" class="btn_style convert" >Convert</button>
 				</div>
 			</div>
 		</div>
@@ -182,7 +182,7 @@
 									<h2>@item.AdventureTitle</h2>
 									<p>@item.AdventureDescription</p>
 								</div>
-								<img src="@item.AdventureImage.Url()" />
+								<a href="@item.AdventureLink.Url" target="_blank"><img src="@item.AdventureImage.Url()" /></a>
 							</div>
 						</div>
 					}
@@ -191,3 +191,6 @@
 		</div>
 	</div>
 </section>
+ 
+<script src="~/assets/js/currency.js"></script> 
+

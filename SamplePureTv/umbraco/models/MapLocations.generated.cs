@@ -66,6 +66,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string ActivityDescription => this.Value<string>(_publishedValueFallback, "activityDescription");
 
 		///<summary>
+		/// Activity Link
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("activityLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Link ActivityLink => this.Value<global::Umbraco.Cms.Core.Models.Link>(_publishedValueFallback, "activityLink");
+
+		///<summary>
 		/// Icon
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
@@ -96,6 +104,21 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("popUpLogo")]
 		public virtual global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent PopUpLogo => this.Value<global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>(_publishedValueFallback, "popUpLogo");
+
+		///<summary>
+		/// Popup Video
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("popupVideo")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops PopupVideo => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "popupVideo");
+
+		///<summary>
+		/// Popup Video OnOff
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "10.3.2+e7fae14")]
+		[ImplementPropertyType("popupVideoOnOff")]
+		public virtual bool PopupVideoOnOff => this.Value<bool>(_publishedValueFallback, "popupVideoOnOff");
 
 		///<summary>
 		/// Show/Hide

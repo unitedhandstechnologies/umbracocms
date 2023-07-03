@@ -110,13 +110,6 @@
             <div class="footer-content overlay">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="footer-title">Popular Destinations</div>
-                            @foreach (var item in @homepage.PopularDestinations)
-                            {
-                                <a href="@item.Link.Url" class="footer-item"> @item.Title</a>
-                            }
-                        </div>
                         <!--  -->
                         <div class="col-lg-3 col-md-6">
                             <div class="footer-title">Things to do</div>
@@ -158,11 +151,6 @@
                                     </a>
                                 </div>
                                 <div class="socila-icons">
-                                    <a href="@homepage.YoutubeLink.Url">
-                                        <i class="fa fa-youtube"></i>
-                                    </a>
-                                </div>
-                                <div class="socila-icons">
                                     <a href="@homepage.TwitterLink.Url">
                                         <i class="fa fa-twitter"></i>
                                     </a>
@@ -198,7 +186,7 @@
 
         <script src="~/assets/js/scripts.js"></script>
         <script src="~/assets/js/newsroom_slide.js"></script>
-        <div class="itinerary_style">
+        <div class="itinerary_style" style="bottom:180px">
             <div class="itinerary">
                 <div class="imageBox imageBefore">
                     <a href="@homepage?.ItinerariesLink.Url">
